@@ -1,5 +1,10 @@
+
+var name : string;
+var gruss: string;
+
 document.addEventListener('DOMContentLoaded', function () {
-    var name : string = prompt("Bitte geben Sie Ihren Namen ein.");
-    var gruss : string = "Herzlich Willkommen ";
+      
+    var name = prompt("Bitte geben Sie Ihren Namen ein.");
+    var gruss = "Herzlich Willkommen ";
     document.body.innerHTML = gruss + name;
 }); 
