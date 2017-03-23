@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var name = prompt("Bitte geben Sie Ihren Namen ein.");
-    var gruss = "Herzlich Willkommen ";
+    var name : string = prompt("Bitte geben Sie Ihren Namen ein.");
+    var gruss : string = "Herzlich Willkommen ";
     document.body.innerHTML = gruss + name;
 });
