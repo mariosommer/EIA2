@@ -1,0 +1,34 @@
+body{
+	width: 1000px;
+	height: 1000px;
+	font-size:0.66em;
+	text-align:center;
+}
+
+.board{
+	height:110px;
+	width: 110px;
+	border: 1px solid black;
+	float:left;
+	line-height: 110px;
+}
+
+.white{
+	background: white;
+}
+
+.black{
+	background: black;
+	color:white;
+}
+
+.floating{
+	clear:both;
+}
+
+
+.ausgewaehlteFelder {
+	background-color: grey;
+}
+
+
