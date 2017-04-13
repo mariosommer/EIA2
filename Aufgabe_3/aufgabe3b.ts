@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         handkartenArray.splice(i, 1);               // entfernt die geklickte Karte aus dem Handkarten Array
                         break;
                     }
-                }       
+                }    
+                 document.getElementById("divAblagestapel").textContent = "Ablagestapel" + "\r\n" + "Karten: " + ablegestapelArray.length + "\r\n" +" Karte: " + this.textContent;   
          //       document.getElementById("divAblagestapel").textContent = handkartenArray[i]; 
                 this.parentNode.removeChild(this); // Entfernt das Div 
             });

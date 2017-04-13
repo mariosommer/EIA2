@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         break;
                     }
                 }
+                document.getElementById("divAblagestapel").textContent = "Ablagestapel" + "\r\n" + "Karten: " + ablegestapelArray.length + "\r\n" + " Karte: " + this.textContent;
                 //       document.getElementById("divAblagestapel").textContent = handkartenArray[i]; 
                 this.parentNode.removeChild(this); // Entfernt das Div 
             });
