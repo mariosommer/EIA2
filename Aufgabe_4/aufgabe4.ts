@@ -16,20 +16,36 @@ namespace L4_Canvas {
         let canvas: HTMLCanvasElement;
         canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
-
+        
         crc2 = canvas.getContext("2d");
-        console.log(crc2);         
-        crc2.fillStyle = "#7BDEDF";
+        console.log(crc2);  
+        
+        var gradient = crc2.createLinearGradient(0, 300, 0, 10);
+        gradient.addColorStop(0, "#7BDEDF");
+        gradient.addColorStop(1, "#1874CD");
+        //gradient.addColorStop(0, "orange");
+        //gradient.addColorStop(1, "#ff3300");
+  
+        crc2.fillStyle = gradient;       
         crc2.fillRect(0, 0, canvas.width, 400); 
-        crc2.fillStyle = "#5AC318";
+        
+        //drawSun(500, 420, "#ff471a", "#ff3333");
+        drawMountain(0, 301, "black", "grey");
+          
+        //Farbverlauf Wiese
+        var gradient2 : any = crc2.createLinearGradient(0,0,800,0);
+        gradient2.addColorStop("0","#185A18");
+        gradient2.addColorStop("0.5","#188218");
+        gradient2.addColorStop("1.0","#18C339"); 
+        //Wiese
+        crc2.fillStyle = gradient2;
         crc2.fillRect(0, 400, canvas.width, 80);
-
-        drawMountain(0, 300, "black", "grey");
-        drawSun(740, 55, "#DE8418", "yellow");
+        
+        //Sonne wird am Mittelpunkt des Kreises gesetzt
+        drawSun(740, 55, "#ffcc00", "#ffff00");
         drawCloud_1(500, 140, "white");
         drawCloud_2(300, 140, "white");
-         
-        
+                 
         //Blumen werden am Wurzelpunkt gesetzt
         //Feste Position
         drawFlower_1(590, 440, "red", "yellow");
@@ -40,9 +56,10 @@ namespace L4_Canvas {
         drawFlower_2(700, 460, "white", "white");
         drawFlower_3(60, 475);
         drawFlower_3(780, 480);
-        
+        drawFlower_4(760, 400);
         //Random Position und Anzahl
         drawFlowerRandom();   
+        drawFlower_4(620, 470);
       }
      
      function drawFlowerRandom(){
@@ -118,19 +135,20 @@ namespace L4_Canvas {
         crc2.lineTo(_x + 220, _y - 20);
         crc2.stroke();
         //Grüne Wiese über den Berg 
-        crc2.beginPath();
-        crc2.fillStyle = "green";
-        crc2.fillRect(0, 398, 800, 3);   
+        //crc2.beginPath();
+        //crc2.fillStyle = "green";
+        //crc2.fillRect(0, 398, 800, 3);   
     }
      
     function drawSun(_x: number, _y: number, _strokeColor: string, _fillColor: string): void {    
         crc2.beginPath();
         crc2.fillStyle = _fillColor;
         crc2.strokeStyle = _strokeColor;
-        crc2.arc(_x + 0, _y + 0, 35, 0, 2 * Math.PI);
+        crc2.arc(_x + 0, _y + 0, 45, 0, 2 * Math.PI);
         crc2.closePath();
         crc2.fill();
-        crc2.stroke();       
+        crc2.stroke();  
+        crc2.closePath();
      }
 
     function drawCloud_1(_x: number, _y: number, _fillColor: string): void {
@@ -153,7 +171,6 @@ namespace L4_Canvas {
      }   
 
      function drawCloud_2(_x: number, _y: number, _fillColor: string): void {
-      
         crc2.fillStyle = _fillColor;
         crc2.beginPath();
         crc2.arc(_x - 3, _y - 46, 18, 0, 2 * Math.PI);
@@ -175,7 +192,6 @@ namespace L4_Canvas {
      
      //BLUME 1 
      function drawFlower_1(_x : number, _y : number, _strokeColor : string, _fillColor : string) {
-       
         //Grashalm + Blätter
         crc2.beginPath();
         crc2.fillStyle = "#185A18";
@@ -221,8 +237,7 @@ namespace L4_Canvas {
         crc2.fill();
         }
      
-     function drawFlower_2(_x : number, _y : number, _strokeColor : string, _fillColor : string) {
-        
+     function drawFlower_2(_x : number, _y : number, _strokeColor : string, _fillColor : string) {  
         //Grashalm + Blätter
         crc2.beginPath();
         crc2.fillStyle = "#185A18";
@@ -244,8 +259,7 @@ namespace L4_Canvas {
         crc2.fill();
     }        
      
-     function drawFlower_3(_x : number, _y : number) {
-         
+     function drawFlower_3(_x : number, _y : number) {  
         //Grashalm + Blätter
         crc2.beginPath();
         crc2.fillStyle = "#185A18";
@@ -259,7 +273,7 @@ namespace L4_Canvas {
         crc2.fillStyle = "#C61884";
         for (let i = 0; i < 5; i++) {
             crc2.ellipse(_x + 1.2, _y - 42, 5, 18, (i * 35) * Math.PI / 180, 0, 2 * Math.PI);
-            }
+        }
         crc2.fill();
         crc2.beginPath();
         crc2.fillStyle = "#DF5AC3";
@@ -272,5 +286,40 @@ namespace L4_Canvas {
         crc2.fillStyle = "#DFC6C3";
         crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
         crc2.fill();
-    }        
-}  
+    }     
+    
+        function drawFlower_4(_x : number, _y : number) { 
+        //Grashalm + Blätter
+        crc2.beginPath();
+        crc2.fillStyle = "#185A18";
+        crc2.fillRect(_x, _y -25, 2.4, 25);
+        crc2.ellipse(_x - 3.5, _y - 14, 2.4, 8, -35 * Math.PI / 180, 0, 2 * Math.PI);
+        crc2.ellipse(_x + 5, _y - 17, 2, 7.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
+        crc2.closePath();
+        crc2.fill();
+        //Blüte
+        crc2.beginPath();
+        crc2.fillStyle = "#DF1818";
+        for (let i = 0; i < 3; i++) {
+            crc2.ellipse(_x + 1.2, _y - 42, 6, 22, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
+        }
+        crc2.fill();
+        crc2.beginPath();
+        crc2.fillStyle = "#DFC318";
+        for (let i = 0; i < 3; i++) {
+            crc2.ellipse(_x + 1.2, _y - 42, 5, 18, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
+        }
+        crc2.fill();
+        crc2.beginPath();
+        crc2.fillStyle = "#DF5A18";
+        for (let i = 0; i < 3; i++) {
+            crc2.ellipse(_x + 1.2, _y - 42, 5, 14, (i * 60) * Math.PI / 180, 0, 2 * Math.PI); 
+        }
+        crc2.closePath();
+        crc2.fill();
+        crc2.beginPath();
+        crc2.fillStyle = "#DFDF7B";
+        crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
+        crc2.fill();
+    }     
+} 
