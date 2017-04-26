@@ -7,7 +7,12 @@ Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
 */
 
-document.addEventListener('DOMContentLoaded', function() {
+namespace L3A_Chess{
+    window.addEventListener("load", init);
+
+
+    
+    function init(_event: Event): void {
 
     let zeile: number = 0;
     let rice: number = 1;
@@ -126,7 +131,5 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("position").innerHTML = "Reiskörner:" + "\r\n" + "Dezimal: " + anzahlKoerner.toString() + "\r\n" + "Hexadezimal: " + anzahlKoerner.toString(16);
         }
     }
-});
-
-
-
+}
+}
