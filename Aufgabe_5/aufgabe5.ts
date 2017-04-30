@@ -1,21 +1,20 @@
-/* Aufgabe: Aufgabe 4
+/* Aufgabe: Aufgabe 5
 Name: Mario Sommer
 Matrikel: 254785
-Datum: 17.04.2017
+Datum: 30.04.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
+Code in Zusammenarbeit mir Matthias Fischer
 */
 
 namespace L4_Canvas {
     window.addEventListener("load", init);
     let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     let crc2: CanvasRenderingContext2D;
-    let x : any = [];
-    let y : any = [];
+    let x: any = [];
+    let y: any = [];
     let n = 10;
-    let imgData = crc2.getImageData(0, 0, 800, 480); 
-    
     let radius: number = 10;
 
     function init(_event: Event): void {
@@ -23,6 +22,8 @@ namespace L4_Canvas {
         let canvas: HTMLCanvasElement;
         canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
+
+        canvas.style.marginLeft = "20px";
 
         crc2 = canvas.getContext("2d");
         console.log(crc2);
@@ -53,6 +54,7 @@ namespace L4_Canvas {
         drawCloud_1(500, 140, "white");
         drawCloud_2(300, 140, "white");
 
+        drawTree(700, 210);
         //Blumen werden am Wurzelpunkt gesetzt
         //Feste Position
         drawFlower_1(590, 440, "red", "yellow");
@@ -63,54 +65,45 @@ namespace L4_Canvas {
         drawFlower_2(700, 460, "white", "white");
         drawFlower_3(60, 475);
         drawFlower_3(780, 480);
-        drawFlower_4(760, 400);
+        drawFlower_4(770, 400);
         //Random Position und Anzahl
         drawFlowerRandom();
         drawFlower_4(620, 470);
 
+        drawBienenkorb(700, 295);
+        
         //Funktion Canvas Bild abspeichern
         copyPicture();
 
         //Startposition der Bienen
         for (var i = 0; i < n; i++) {
-            x[i] = 650;
+            x[i] = 720;
             y[i] = 280;
-            }
-        
+        }
+
         window.setTimeout(animate, 20);
-        
+
         //Click Event Biene hinzufügen
         canvas.addEventListener("click", addBiene);
-
     }
 
     function animate() {
-       // console.log("Animate called");
         crc2.putImageData(imgData, 0, 0);
-        
-     
-        
+
         for (var i = 0; i < n; i++) {
-        
-        
-            
-        
-        drawBiene(x[i], y[i]);
-            
+            drawBiene(x[i], y[i]);
         }
-        
-        
-        
         updateBienen()
         window.setTimeout(animate, 20);
-        
     }
-    
-    function drawBiene(_x : any, _y : any) {
-        crc2.fillStyle = "#000000";
-        crc2.fillRect(_x, _y, 10, 10);
+
+    function drawBiene(_x: any, _y: any) {
+        //  crc2.fillStyle = "#000000";
+        //  crc2.fillRect(_x, _y, 10,        
+        var img = document.getElementById("biene");
+        crc2.drawImage(img, _x, _y);
     }
-    
+
     //Canvasbild speichern
     function copyPicture() {
         imgData = crc2.getImageData(0, 0, 800, 480);
@@ -119,42 +112,36 @@ namespace L4_Canvas {
 
     //Neue Biene bei Klick hinzufügen
     function addBiene() {
-        x.push(200);
-        y.push(345);
+        x.push(720);
+        y.push(280);
         n += 1;
     }
-  
 
     // Update die Position aller Bienen
     function updateBienen() {
-       for (let i = 0; i < n; i++) {
-            x[i] += Math.random() * 4 - 1.5;
+        for (let i = 0; i < n; i++) {
+            x[i] += Math.random() * 2 - 2;
             y[i] += Math.random() * 6 - 3;
-            
-        //Biene kommt wieder auf der gegenüberliegenden Seite rein aus der sie rausfliegt        
-        //rechts raus, links rein
-        if (x[i] >= crc2.canvas.width) {
-                x[i] = 0;
+
+            //Biene kommt wieder auf der gegenüberliegenden Seite rein aus der sie rausfliegt        
+            //rechts raus, links rein
+            if (x[i] >= crc2.canvas.width + 1) {
+                x[i] = -3;
             }
-        //links raus, rechts rein
-        if (x[i] <= -1) {
+            //links raus, rechts rein
+            if (x[i] <= -18) {
                 x[i] = crc2.canvas.width;
             }
-        //oben raus, unten rein   
-        if (y[i] <= -1) {
+            //oben raus, unten rein   
+            if (y[i] <= -1) {
                 y[i] = crc2.canvas.height;
             }
-        //unten raus, oben rein   
-        if (y[i] >= crc2.canvas.height) {
+            //unten raus, oben rein   
+            if (y[i] >= crc2.canvas.height) {
                 y[i] = 0;
             }
         }
     }
-    
-    
-    
-    
-    
 
     function drawFlowerRandom() {
 
@@ -184,6 +171,71 @@ namespace L4_Canvas {
                     break;
             }
         }
+    }
+
+    function drawBienenkorb(_x: any, _y: any) {
+        crc2.beginPath();
+        crc2.fillStyle = "#e6b800";
+        crc2.strokeStyle = "#996633";
+
+        crc2.arc(_x + 60, _y - 12, 5, 0, 2 * Math.PI);
+        crc2.arc(_x + 10, _y - 12, 5, 0, 2 * Math.PI);
+        crc2.rect(_x + 10, _y - 17, 50, 10);
+        crc2.lineWidth = 4;
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.arc(_x + 5, _y, 6, 0, 2 * Math.PI);
+        crc2.arc(_x + 65, _y, 6, 0, 2 * Math.PI);
+        crc2.rect(_x + 5, _y - 6, 60, 12);
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.arc(_x + 60, _y + 13, 5, 0, 2 * Math.PI);
+        crc2.arc(_x + 10, _y + 13, 5, 0, 2 * Math.PI);
+        crc2.rect(_x + 10, _y + 8, 50, 10);
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.arc(_x + 55, _y + 24, 4, 0, 2 * Math.PI);
+        crc2.arc(_x + 15, _y + 24, 4, 0, 2 * Math.PI);
+        crc2.rect(_x + 15, _y + 20, 40, 8);
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.arc(_x + 55, _y - 23, 4, 0, 2 * Math.PI);
+        crc2.arc(_x + 15, _y - 23, 4, 0, 2 * Math.PI);
+        crc2.rect(_x + 15, _y - 27, 40, 8);
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.arc(_x + 47.5, _y + 33, 3, 0, 2 * Math.PI);
+        crc2.arc(_x + 22.5, _y + 33, 3, 0, 2 * Math.PI);
+        crc2.rect(_x + 22.5, _y + 30, 25, 6);
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.arc(_x + 47.5, _y - 32, 3, 0, 2 * Math.PI);
+        crc2.arc(_x + 22.5, _y - 32, 3, 0, 2 * Math.PI);
+        crc2.rect(_x + 22.5, _y - 35, 25, 6);
+        crc2.stroke();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.fillStyle = "#000000";
+        crc2.arc(_x + 27.5, _y, 7, 0, 2 * Math.PI);
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.fillStyle = "#663300";
+        crc2.rect(_x, _y - 49, 85, 12);
+        crc2.fill();
     }
 
     function drawMountain(_x: number, _y: number, _strokeColor: string, _fillColor: string): void {
@@ -282,7 +334,6 @@ namespace L4_Canvas {
         crc2.closePath();
         crc2.fill();
     }
-
 
     //BLUME 1 
     function drawFlower_1(_x: number, _y: number, _strokeColor: string, _fillColor: string) {
@@ -414,6 +465,29 @@ namespace L4_Canvas {
         crc2.beginPath();
         crc2.fillStyle = "#DFDF7B";
         crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
+        crc2.fill();
+    }
+
+    function drawTree(_x: number, _y: number) {
+        //Stamm
+        crc2.beginPath();
+        crc2.fillStyle = "#663300";
+        crc2.fillRect(_x + 80, _y + 10, 35, 180);
+        //Krone
+        crc2.beginPath();
+        var gradient2: any = crc2.createLinearGradient(720, 0, 840, 0);
+        gradient2.addColorStop("0.2", "#185A18");
+        gradient2.addColorStop("0.5", "#188218");
+        gradient2.addColorStop("1.0", "#18C339");
+        crc2.fillStyle = gradient2;
+        crc2.strokeStyle = "#196619";
+        crc2.arc(_x + 110, _y - 70, 35, 0, 2 * Math.PI);
+        crc2.arc(_x + 140, _y - 40, 35, 0, 2 * Math.PI);
+        crc2.arc(_x + 110, _y - 10, 35, 0, 2 * Math.PI);
+        crc2.arc(_x + 65, _y - 20, 35, 0, 2 * Math.PI);
+        crc2.arc(_x + 65, _y - 60, 35, 0, 2 * Math.PI);
+        crc2.stroke();
+        crc2.closePath();
         crc2.fill();
     }
 } 
