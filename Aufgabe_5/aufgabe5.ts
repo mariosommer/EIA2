@@ -6,7 +6,7 @@ Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
 Code in Zusammenarbeit mit Matthias Fischer
-*/
+*/ 
 
 
 namespace L4_Canvas {

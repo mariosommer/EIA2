@@ -1,4 +1,4 @@
-/* Aufgabe: Aufgabe 5
+/* Aufgabe:Aufgabe 5
 Name: Mario Sommer
 Matrikel: 254785
 Datum: 30.04.2017
