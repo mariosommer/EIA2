@@ -5,7 +5,7 @@ Datum: 30.04.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
-Code in Zusammenarbeit mir Matthias Fischer
+Code in Zusammenarbeit mit Matthias Fischer
 */
 var L4_Canvas;
 (function (L4_Canvas) {
