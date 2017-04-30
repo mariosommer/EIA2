@@ -8,6 +8,7 @@ nicht kopiert und auch nicht diktiert.
 Code in Zusammenarbeit mir Matthias Fischer
 */
 
+
 namespace L4_Canvas {
     window.addEventListener("load", init);
     let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
