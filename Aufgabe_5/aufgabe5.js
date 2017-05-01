@@ -1,4 +1,4 @@
-/* Aufgabe:Aufgabe 5
+/* Aufgabe: Aufgabe 5
 Name: Mario Sommer
 Matrikel: 254785
 Datum: 30.04.2017
@@ -16,6 +16,7 @@ var L4_Canvas;
     var y = [];
     var n = 10;
     var radius = 10;
+    var imgData = crc2.getImageData(0, 0, 800, 480);
     function init(_event) {
         console.log("Hallo");
         var canvas;

@@ -13,10 +13,11 @@ namespace L4_Canvas {
     window.addEventListener("load", init);
     let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     let crc2: CanvasRenderingContext2D;
-    let x: any = [];
-    let y: any = [];
+    let x : number [] = [];
+    let y : number [] = [];
     let n = 10;
     let radius: number = 10;
+    let imgData = crc2.getImageData(0, 0, 800, 480);
 
     function init(_event: Event): void {
         console.log("Hallo");
@@ -42,7 +43,7 @@ namespace L4_Canvas {
         drawMountain(0, 301, "black", "grey");
 
         //Farbverlauf Wiese
-        var gradient2: any = crc2.createLinearGradient(0, 0, 800, 0);
+        var gradient2 : any = crc2.createLinearGradient(0, 0, 800, 0);
         gradient2.addColorStop("0", "#185A18");
         gradient2.addColorStop("0.5", "#188218");
         gradient2.addColorStop("1.0", "#18C339");
@@ -97,8 +98,8 @@ namespace L4_Canvas {
         updateBienen()
         window.setTimeout(animate, 20);
     }
-
-    function drawBiene(_x: any, _y: any) {
+ 
+    function drawBiene(_x: number, _y: number) {
         //  crc2.fillStyle = "#000000";
         //  crc2.fillRect(_x, _y, 10,        
         var img = document.getElementById("biene");
@@ -174,7 +175,7 @@ namespace L4_Canvas {
         }
     }
 
-    function drawBienenkorb(_x: any, _y: any) {
+    function drawBienenkorb(_x: number, _y: number) {
         crc2.beginPath();
         crc2.fillStyle = "#e6b800";
         crc2.strokeStyle = "#996633";
