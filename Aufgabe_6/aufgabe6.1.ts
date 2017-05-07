@@ -53,7 +53,7 @@ namespace L4_Canvas {
         canvas.style.marginLeft = "20px";
         crc2 = canvas.getContext("2d");
 
-        var gradient = crc2.createLinearGradient(0, 300, 0, 10);
+        var gradient: CanvasGradient = crc2.createLinearGradient(0, 300, 0, 10);
         gradient.addColorStop(0, "#7BDEDF");
         gradient.addColorStop(1, "#1874CD");
 
@@ -63,10 +63,10 @@ namespace L4_Canvas {
         drawMountain(0, 301, "black", "grey");
 
         //Farbverlauf Wiese
-        var gradient2: any = crc2.createLinearGradient(0, 0, 800, 0);
-        gradient2.addColorStop("0", "#185A18");
-        gradient2.addColorStop("0.5", "#188218");
-        gradient2.addColorStop("1.0", "#18C339");
+        var gradient2: CanvasGradient = crc2.createLinearGradient(0, 0, 800, 0);
+        gradient2.addColorStop(0, "#185A18");
+        gradient2.addColorStop(0.5, "#188218");
+        gradient2.addColorStop(1.0, "#18C339");
         //Wiese
         crc2.fillStyle = gradient2;
         crc2.fillRect(0, 400, canvas.width, 80);
@@ -256,10 +256,10 @@ namespace L4_Canvas {
         crc2.lineWidth = 2;
 
         //Farbverlauf Mountain
-        var gradient: any = crc2.createLinearGradient(0, 0, 0, 440);
-        gradient.addColorStop("0.5", "white");
-        gradient.addColorStop("0.5", "#6E6E6E");
-        gradient.addColorStop("1.0", "#3C3C3C");
+        var gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 440);
+        gradient.addColorStop(0.5, "white");
+        gradient.addColorStop(0.5, "#6E6E6E");
+        gradient.addColorStop(1.0, "#3C3C3C");
         //Mountain
         crc2.fillStyle = gradient;
         crc2.moveTo(_x + 0, _y + 0);
@@ -486,11 +486,12 @@ namespace L4_Canvas {
         crc2.fillRect(_x + 80, _y + 10, 35, 180);
         //Krone
         crc2.beginPath();
-        var gradient2: any = crc2.createLinearGradient(720, 0, 840, 0);
-        gradient2.addColorStop("0.2", "#185A18");
-        gradient2.addColorStop("0.5", "#188218");
-        gradient2.addColorStop("1.0", "#18C339");
+        var gradient2: CanvasGradient = crc2.createLinearGradient(720, 0, 840, 0);
+        gradient2.addColorStop(0.2, "#185A18");
+        gradient2.addColorStop(0.5, "#188218");
+        gradient2.addColorStop(1.0, "#18C339");
         crc2.fillStyle = gradient2;
+        
         crc2.strokeStyle = "#196619";
         crc2.arc(_x + 110, _y - 70, 35, 0, 2 * Math.PI);
         crc2.arc(_x + 140, _y - 40, 35, 0, 2 * Math.PI);
