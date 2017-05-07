@@ -92,7 +92,7 @@ namespace StudiVZ {
     function queryData(_matrikel: number): string {
         for (let i: number = 0; i < students.length; i++) {  //Alle Studenten durchlaufen
 
-            if (students[i].matrikelnummer == _matrikel) {     //Überprüfung ist die eingegebene Matrikelnummer vorhanden, wenn ja gib die Daten aus, wenn Nein Fehlermeldung
+            if (students[i].matrikelnummer == _matrikel) {     //Überprüfung ist die eingegebene Matrikelnummer vorhanden
 
                 let _geschlecht: string;
                 if (students[i].geschlecht == true) {
