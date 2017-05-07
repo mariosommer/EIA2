@@ -20,6 +20,11 @@ var L4_Canvas;
     var radius = 10;
     var imgData = crc2.getImageData(0, 0, 800, 480);
     function init(_event) {
+        var canvas;
+        canvas = document.getElementsByTagName("canvas")[0];
+        console.log(canvas);
+        canvas.style.marginLeft = "20px";
+        crc2 = canvas.getContext("2d");
         for (var i = 0; i < n; i++) {
             var s = { x: 0, y: 0, size: 0, xspeed: 0, yspeed: 0 }; // default-values
             s.x = 720; //Startposition
@@ -29,11 +34,6 @@ var L4_Canvas;
             s.yspeed = Math.random() * (ymax - ymin) + ymin; //Speed in y-Richtung 
             bienen[i] = s;
         }
-        var canvas;
-        canvas = document.getElementsByTagName("canvas")[0];
-        console.log(canvas);
-        canvas.style.marginLeft = "20px";
-        crc2 = canvas.getContext("2d");
         var gradient = crc2.createLinearGradient(0, 300, 0, 10);
         gradient.addColorStop(0, "#7BDEDF");
         gradient.addColorStop(1, "#1874CD");

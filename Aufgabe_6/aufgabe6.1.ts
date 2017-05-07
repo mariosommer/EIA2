@@ -1,6 +1,6 @@
 /* Aufgabe: Aufgabe 6.1
 Name: Mario Sommer
-Matrikel: 254785 
+Matrikel: 254785
 Datum: 04.05.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
@@ -34,25 +34,26 @@ namespace L4_Canvas {
     
     let radius: number = 10;  
     let imgData: ImageData = crc2.getImageData(0, 0, 800, 480);
+    
+    
 
     function init(_event: Event): void {
         
-         for (let i: number = 0; i < n; i++) {
-            let s: Biene = { x: 0, y: 0, size: 0, xspeed: 0, yspeed: 0}; // default-values
-            s.x = 720; //Startposition
-            s.y = 280;
-            s.size = Math.random() * 20 + 10; //Größe      
-            s.xspeed = Math.random() * (xmax - xmin) + xmin; //Speed in x-Richtung 
-            s.yspeed = Math.random() * (ymax - ymin) + ymin; //Speed in y-Richtung 
-            bienen[i] = s;
-        }
-
         let canvas: HTMLCanvasElement;
         canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
         canvas.style.marginLeft = "20px";
         crc2 = canvas.getContext("2d");
-
+        
+        for (let i: number = 0; i < n; i++) {
+           let s: Biene = { x: 0, y: 0, size: 0, xspeed: 0, yspeed: 0}; // default-values
+           s.x = 720; //Startposition
+           s.y = 280;
+           s.size = Math.random() * 20 + 10; //Größe      
+           s.xspeed = Math.random() * (xmax - xmin) + xmin; //Speed in x-Richtung 
+           s.yspeed = Math.random() * (ymax - ymin) + ymin; //Speed in y-Richtung 
+           bienen[i] = s;
+        }
         var gradient: CanvasGradient = crc2.createLinearGradient(0, 300, 0, 10);
         gradient.addColorStop(0, "#7BDEDF");
         gradient.addColorStop(1, "#1874CD");
@@ -150,7 +151,7 @@ namespace L4_Canvas {
     
     function drawBiene(_s: Biene): void {
         
-       var img = document.getElementById("biene");
+       var img: HTMLImageElement = document.getElementById("biene");
        crc2.drawImage(img, _s.x, _s.y, _s.size, _s.size);
     }
 
