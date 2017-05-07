@@ -1,6 +1,6 @@
 /* Aufgabe: Aufgabe 6.1
 Name: Mario Sommer
-Matrikel: 254785
+Matrikel: 254785 
 Datum: 04.05.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
@@ -33,7 +33,7 @@ namespace L4_Canvas {
     let ymax: number = 0.5;
     
     let radius: number = 10;  
-    let imgData = crc2.getImageData(0, 0, 800, 480);
+    let imgData: ImageData = crc2.getImageData(0, 0, 800, 480);
 
     function init(_event: Event): void {
         
