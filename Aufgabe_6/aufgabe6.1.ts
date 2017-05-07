@@ -478,7 +478,7 @@ namespace L4_Canvas {
         crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
         crc2.fill();
     }
-
+ 
     function drawTree(_x: number, _y: number): void {
         //Stamm
         crc2.beginPath();
