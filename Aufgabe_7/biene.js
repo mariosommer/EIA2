@@ -6,9 +6,11 @@ var L7_Classes;
             this.xmax = 1.5;
             this.ymin = -0.5;
             this.ymax = 0.5;
-            this.setRandomStyle();
+            this.setRandomSpeed();
+            this.setRandomSize();
             this.x = _x;
             this.y = _y;
+            this.draw();
         }
         Biene.prototype.update = function () {
             this.move();
@@ -19,6 +21,8 @@ var L7_Classes;
             L7_Classes.crc2.drawImage(img, this.x, this.y, this.size, this.size);
         };
         Biene.prototype.move = function () {
+            //     this.xspeed = Math.random() * (this.xmax - this.xmin) + this.xmin; //Speed in x-Richtung 
+            //     this.yspeed = Math.random() * (this.ymax - this.ymin) + this.ymin; //Speed i 
             this.x += Math.random() * 2 - 2 - this.xspeed;
             this.y += Math.random() * 2 - 1 - this.yspeed;
             if (this.x >= L7_Classes.crc2.canvas.width + 10) {
@@ -37,10 +41,12 @@ var L7_Classes;
                 this.y = 0;
             }
         };
-        Biene.prototype.setRandomStyle = function () {
-            this.size = Math.random() * 20 + 10; //Größe  
+        Biene.prototype.setRandomSize = function () {
+            this.size = Math.random() * 20 + 10; //Größe
+        };
+        Biene.prototype.setRandomSpeed = function () {
             this.xspeed = Math.random() * (this.xmax - this.xmin) + this.xmin; //Speed in x-Richtung 
-            this.yspeed = Math.random() * (this.ymax - this.ymin) + this.ymin; //Speed in y-Richtung 
+            this.yspeed = Math.random() * (this.ymax - this.ymin) + this.ymin; //Speed in y-Richtung   
         };
         return Biene;
     }());

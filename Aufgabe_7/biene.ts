@@ -1,5 +1,5 @@
 namespace L7_Classes {
-    
+
     export class Biene {
         x: number;
         y: number;
@@ -13,9 +13,11 @@ namespace L7_Classes {
         ymax: number = 0.5;
 
         constructor(_x: number, _y: number) {
-            this.setRandomStyle();
+            this.setRandomSpeed();
+            this.setRandomSize();
             this.x = _x;
             this.y = _y;
+            this.draw();
         }
 
         update(): void {
@@ -24,15 +26,17 @@ namespace L7_Classes {
         }
 
         draw(): void {
-            var img: HTMLImageElement = document.getElementById("biene");
+            var img: HTMLImageElement = <HTMLImageElement>document.getElementById("biene");
             crc2.drawImage(img, this.x, this.y, this.size, this.size);
         }
-        
+
         move(): void {
+            //     this.xspeed = Math.random() * (this.xmax - this.xmin) + this.xmin; //Speed in x-Richtung 
+            //     this.yspeed = Math.random() * (this.ymax - this.ymin) + this.ymin; //Speed i 
+            
             this.x += Math.random() * 2 - 2 - this.xspeed;
             this.y += Math.random() * 2 - 1 - this.yspeed;
-            
-            
+
             if (this.x >= crc2.canvas.width + 10) {
                 this.x = -3;
             }
@@ -46,14 +50,17 @@ namespace L7_Classes {
             }
             //unten raus, oben rein               
             if (this.y >= crc2.canvas.height) {
-            this.y = 0;
-             }
+                this.y = 0;
+            }
         }
-        
-        setRandomStyle(): void {
-            this.size = Math.random() * 20 + 10; //Größe  
+
+        setRandomSize(): void {
+            this.size = Math.random() * 20 + 10; //Größe
+        }
+
+        setRandomSpeed(): void {
             this.xspeed = Math.random() * (this.xmax - this.xmin) + this.xmin; //Speed in x-Richtung 
-            this.yspeed = Math.random() * (this.ymax - this.ymin) + this.ymin; //Speed in y-Richtung 
+            this.yspeed = Math.random() * (this.ymax - this.ymin) + this.ymin; //Speed in y-Richtung   
         }
     }
 }

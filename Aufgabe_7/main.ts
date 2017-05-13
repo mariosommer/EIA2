@@ -1,7 +1,7 @@
 /* Aufgabe: Aufgabe 7
 Name: Mario Sommer
 Matrikel: 254785
-Datum: 04.05.2017
+Datum: 11.05.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
@@ -12,31 +12,23 @@ namespace L7_Classes {
 
     window.addEventListener("load", init);
 
-    let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
-
     export let crc2: CanvasRenderingContext2D; //export - Klasse muss wissen worauf sie sich zeichnen soll
 
     let bienen: Biene[] = [];
-    let n: number = 10;
-
-
-    let imgData: ImageData = crc2.getImageData(0, 0, 800, 480);
-
-
+    let pflanzen: Pflanze[] = [];
+    let n: number = 10; //Anzahl Bienen
+    let numberFlowers: number = Math.floor((Math.random() * 10) + 8); //Zufallszahl zwischen 8 - 18 //Nur im Hintergrund
+    let p: number = 6; //Anzahl feste Blumen
+    let imgData: ImageData;
 
     function init(_event: Event): void {
 
+        //Hintergrund
         let canvas: HTMLCanvasElement;
         canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
         canvas.style.marginLeft = "20px";
         crc2 = canvas.getContext("2d");
-
-        //Bienen erstellen
-        for (let i: number = 0; i < n; i++) {
-            let s: Biene = new Biene(720, 280);
-            bienen[i] = s;
-        }
 
         var gradient: CanvasGradient = crc2.createLinearGradient(0, 300, 0, 10);
         gradient.addColorStop(0, "#7BDEDF");
@@ -60,26 +52,33 @@ namespace L7_Classes {
         drawSun(740, 55, "#ffcc00", "#ffff00");
         drawCloud_1(500, 140, "white");
         drawCloud_2(300, 140, "white");
-
         drawTree(700, 210);
-        //Blumen werden am Wurzelpunkt gesetzt
-        //Feste Position
-        drawFlower_1(590, 440, "red", "yellow");
-        drawFlower_1(540, 480, "red", "yellow");
-        drawFlower_1(90, 440, "red", "yellow");
-        drawFlower_2(30, 480, "white", "white");
-        drawFlower_2(110, 460, "white", "white");
-        drawFlower_2(700, 460, "white", "white");
-        drawFlower_3(60, 475);
-        drawFlower_3(780, 480);
-        drawFlower_4(770, 400);
-        //Random Position und Anzahl
-        drawFlowerRandom();
-        drawFlower_4(620, 470);
         drawBienenkorb(700, 295);
 
-        //Funktion Canvas Bild abspeichern
-        copyPicture();
+
+        // Feste Blumen im Hintergrund ohne Array
+        for (let i: number = 0; i < numberFlowers; i++) {
+            let t: Pflanze = new Pflanze(0, 0);
+            t.randomPosition();
+        }
+        console.log(pflanzen);
+
+        imgData = crc2.getImageData(0, 0, 800, 480);
+
+        //Blumen erstellen + (Array)
+        for (let i: number = 0; i < p; i++) {
+            let x: number = Math.floor((Math.random() * 760) + 20); //Breite Wiese (20px links/rechts frei damit keine Blüte abgeschnitten wird)
+            let y: number = Math.floor((Math.random() * 80) + 400); //Höhe Wiese
+            let f: Pflanze = new Pflanze(x, y);
+            pflanzen[i] = f;
+        }
+
+        //Bienen erstellen + (Array)
+        for (let i: number = 0; i < n; i++) {
+            let s: Biene = new Biene(720, 280);
+            bienen[i] = s;
+        }
+
         window.setTimeout(animate, 20);
 
         //Click Event Biene hinzufügen
@@ -87,22 +86,27 @@ namespace L7_Classes {
     }
 
     function animate(_width: number, _height: number): void {
+
         crc2.putImageData(imgData, 0, 0); //Bild
 
+        for (let i: number = 0; i < pflanzen.length; i++) {
+            pflanzen[i].drawFlower_4();
+        }
 
         for (let i: number = 0; i < bienen.length; i++) {
             let s: Biene = bienen[i];
             s.update();
         }
-        console.log(bienen);
+
+        //   console.log(bienen);
         window.setTimeout(animate, 20);
     }
 
-    //Canvasbild speichern
-    function copyPicture(): void {
-        imgData = crc2.getImageData(0, 0, 800, 480);
-        crc2.putImageData(imgData, 0, 0);
-    }
+    //    //Canvasbild speichern
+    //    function copyPicture(): void {
+    //        imgData = crc2.getImageData(0, 0, 800, 480);
+    //        crc2.putImageData(imgData, 0, 0);
+    //    }
 
     //Neue Biene bei Klick hinzufügen
     function addBiene(_event: Event): void {
@@ -118,35 +122,8 @@ namespace L7_Classes {
 
 
 
-    function drawFlowerRandom(): void {
 
-        let numberFlowers: number = Math.floor((Math.random() * 10) + 8); //Zufallszahl zwischen 8 - 18
-        console.log(numberFlowers);
-        let x: number;
-        let y: number;
-        let p: number;
 
-        for (var i: number = 0; i < numberFlowers; i++) {
-
-            x = Math.floor((Math.random() * 760) + 20); //Breite Wiese (20px links/rechts frei damit keine Blüte abgeschnitten wird)
-            y = Math.floor((Math.random() * 80) + 400); //Höhe Wiese
-            p = Math.floor((Math.random() * 3) + 0);
-
-            switch (p) {
-                case 0:
-                    drawFlower_1(x, y, "red", "yellow");
-                    break;
-                case 1:
-                    drawFlower_2(x, y, "white", "white");
-                    break;
-                case 2:
-                    drawFlower_3(x, y);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
 
     function drawBienenkorb(_x: number, _y: number): void {
         crc2.beginPath();
@@ -307,139 +284,6 @@ namespace L7_Classes {
         crc2.fill();
         crc2.arc(_x + 4, _y - 33, 10, 0, 2 * Math.PI);
         crc2.closePath();
-        crc2.fill();
-    }
-
-    //BLUME 1 
-    function drawFlower_1(_x: number, _y: number, _strokeColor: string, _fillColor: string): void {
-        //Grashalm + Blätter
-        crc2.beginPath();
-        crc2.fillStyle = "#185A18";
-        crc2.fillRect(_x, _y - 40, 2.5, 40);
-        crc2.ellipse(_x - 6.5, _y - 25, 2.5, 9.5, -45 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.ellipse(_x + 11, _y - 18, 3, 11.5, 45 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        //Blüte
-        crc2.beginPath();
-        crc2.fillStyle = "red";
-        crc2.arc(_x - 7, _y - 49, 7, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.fillStyle = "red";
-        crc2.arc(_x + 9, _y - 49, 7, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x + 1, _y - 54, 7, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x + 7, _y - 39, 7, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x - 5, _y - 39, 7, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        crc2.strokeStyle = _strokeColor;
-        crc2.arc(_x + 1, _y - 45, 5, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-    }
-
-    function drawFlower_2(_x: number, _y: number, _strokeColor: string, _fillColor: string): void {
-        //Grashalm + Blätter
-        crc2.beginPath();
-        crc2.fillStyle = "#185A18";
-        crc2.fillRect(_x, _y - 25, 2, 25);
-        crc2.ellipse(_x - 3.5, _y - 13, 1.6, 6, -35 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.ellipse(_x + 5, _y - 9, 1.8, 6.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-        //Blüte
-        crc2.beginPath();
-        crc2.fillStyle = _fillColor;
-        for (let i: number = 0; i < 8; i++) {
-            crc2.ellipse(_x + 1.2, _y - 30, 2, 10, (i * 22.5) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        crc2.fill();
-        crc2.beginPath();
-        crc2.fillStyle = "orange";
-        crc2.arc(_x + 1.2, _y - 30, 3.8, 0, 2 * Math.PI);
-        crc2.fill();
-    }
-
-    function drawFlower_3(_x: number, _y: number): void {
-        //Grashalm + Blätter
-        crc2.beginPath();
-        crc2.fillStyle = "#185A18";
-        crc2.fillRect(_x, _y - 25, 2.4, 25);
-        crc2.ellipse(_x - 3.5, _y - 14, 2.4, 8, -35 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.ellipse(_x + 5, _y - 17, 2, 7.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-        //Blüte
-        crc2.beginPath();
-        crc2.fillStyle = "#C61884";
-        for (let i: number = 0; i < 5; i++) {
-            crc2.ellipse(_x + 1.2, _y - 42, 5, 18, (i * 35) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        crc2.fill();
-        crc2.beginPath();
-        crc2.fillStyle = "#DF5AC3";
-        for (let i: number = 0; i < 5; i++) {
-            crc2.ellipse(_x + 1.2, _y - 42, 3, 14, (i * 35) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        crc2.closePath();
-        crc2.fill();
-        crc2.beginPath();
-        crc2.fillStyle = "#DFC6C3";
-        crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
-        crc2.fill();
-    }
-
-    function drawFlower_4(_x: number, _y: number): void {
-        //Grashalm + Blätter
-        crc2.beginPath();
-        crc2.fillStyle = "#185A18";
-        crc2.fillRect(_x, _y - 25, 2.4, 25);
-        crc2.ellipse(_x - 3.5, _y - 14, 2.4, 8, -35 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.ellipse(_x + 5, _y - 17, 2, 7.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
-        crc2.closePath();
-        crc2.fill();
-        //Blüte
-        crc2.beginPath();
-        crc2.fillStyle = "#DF1818";
-        for (let i: number = 0; i < 3; i++) {
-            crc2.ellipse(_x + 1.2, _y - 42, 6, 22, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        crc2.fill();
-        crc2.beginPath();
-        crc2.fillStyle = "#DFC318";
-        for (let i: number = 0; i < 3; i++) {
-            crc2.ellipse(_x + 1.2, _y - 42, 5, 18, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        crc2.fill();
-        crc2.beginPath();
-        crc2.fillStyle = "#DF5A18";
-        for (let i: number = 0; i < 3; i++) {
-            crc2.ellipse(_x + 1.2, _y - 42, 5, 14, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        crc2.closePath();
-        crc2.fill();
-        crc2.beginPath();
-        crc2.fillStyle = "#DFDF7B";
-        crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
         crc2.fill();
     }
 

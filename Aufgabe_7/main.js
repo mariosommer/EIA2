@@ -1,7 +1,7 @@
 /* Aufgabe: Aufgabe 7
 Name: Mario Sommer
 Matrikel: 254785
-Datum: 04.05.2017
+Datum: 11.05.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
@@ -9,21 +9,19 @@ nicht kopiert und auch nicht diktiert.
 var L7_Classes;
 (function (L7_Classes) {
     window.addEventListener("load", init);
-    var canvas = document.getElementsByTagName("canvas")[0];
     var bienen = [];
-    var n = 10;
-    var imgData = L7_Classes.crc2.getImageData(0, 0, 800, 480);
+    var pflanzen = [];
+    var n = 10; //Anzahl Bienen
+    var numberFlowers = Math.floor((Math.random() * 10) + 8); //Zufallszahl zwischen 8 - 18 //Nur im Hintergrund
+    var p = 6; //Anzahl feste Blumen
+    var imgData;
     function init(_event) {
+        //Hintergrund
         var canvas;
         canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
         canvas.style.marginLeft = "20px";
         L7_Classes.crc2 = canvas.getContext("2d");
-        //Bienen erstellen
-        for (var i = 0; i < n; i++) {
-            var s = new L7_Classes.Biene(720, 280);
-            bienen[i] = s;
-        }
         var gradient = L7_Classes.crc2.createLinearGradient(0, 300, 0, 10);
         gradient.addColorStop(0, "#7BDEDF");
         gradient.addColorStop(1, "#1874CD");
@@ -43,70 +41,51 @@ var L7_Classes;
         drawCloud_1(500, 140, "white");
         drawCloud_2(300, 140, "white");
         drawTree(700, 210);
-        //Blumen werden am Wurzelpunkt gesetzt
-        //Feste Position
-        drawFlower_1(590, 440, "red", "yellow");
-        drawFlower_1(540, 480, "red", "yellow");
-        drawFlower_1(90, 440, "red", "yellow");
-        drawFlower_2(30, 480, "white", "white");
-        drawFlower_2(110, 460, "white", "white");
-        drawFlower_2(700, 460, "white", "white");
-        drawFlower_3(60, 475);
-        drawFlower_3(780, 480);
-        drawFlower_4(770, 400);
-        //Random Position und Anzahl
-        drawFlowerRandom();
-        drawFlower_4(620, 470);
         drawBienenkorb(700, 295);
-        //Funktion Canvas Bild abspeichern
-        copyPicture();
+        // Feste Blumen im Hintergrund ohne Array
+        for (var i = 0; i < numberFlowers; i++) {
+            var t = new L7_Classes.Pflanze(0, 0);
+            t.randomPosition();
+        }
+        console.log(pflanzen);
+        imgData = L7_Classes.crc2.getImageData(0, 0, 800, 480);
+        //Blumen erstellen + (Array)
+        for (var i = 0; i < p; i++) {
+            var x = Math.floor((Math.random() * 760) + 20); //Breite Wiese (20px links/rechts frei damit keine Blüte abgeschnitten wird)
+            var y = Math.floor((Math.random() * 80) + 400); //Höhe Wiese
+            var f = new L7_Classes.Pflanze(x, y);
+            pflanzen[i] = f;
+        }
+        //Bienen erstellen + (Array)
+        for (var i = 0; i < n; i++) {
+            var s = new L7_Classes.Biene(720, 280);
+            bienen[i] = s;
+        }
         window.setTimeout(animate, 20);
         //Click Event Biene hinzufügen
         canvas.addEventListener("click", addBiene);
     }
     function animate(_width, _height) {
         L7_Classes.crc2.putImageData(imgData, 0, 0); //Bild
+        for (var i = 0; i < pflanzen.length; i++) {
+            pflanzen[i].drawFlower_4();
+        }
         for (var i = 0; i < bienen.length; i++) {
             var s = bienen[i];
             s.update();
         }
-        console.log(bienen);
+        //   console.log(bienen);
         window.setTimeout(animate, 20);
     }
-    //Canvasbild speichern
-    function copyPicture() {
-        imgData = L7_Classes.crc2.getImageData(0, 0, 800, 480);
-        L7_Classes.crc2.putImageData(imgData, 0, 0);
-    }
+    //    //Canvasbild speichern
+    //    function copyPicture(): void {
+    //        imgData = crc2.getImageData(0, 0, 800, 480);
+    //        crc2.putImageData(imgData, 0, 0);
+    //    }
     //Neue Biene bei Klick hinzufügen
     function addBiene(_event) {
         var s = new L7_Classes.Biene(720, 280);
         bienen.push(s);
-    }
-    function drawFlowerRandom() {
-        var numberFlowers = Math.floor((Math.random() * 10) + 8); //Zufallszahl zwischen 8 - 18
-        console.log(numberFlowers);
-        var x;
-        var y;
-        var p;
-        for (var i = 0; i < numberFlowers; i++) {
-            x = Math.floor((Math.random() * 760) + 20); //Breite Wiese (20px links/rechts frei damit keine Blüte abgeschnitten wird)
-            y = Math.floor((Math.random() * 80) + 400); //Höhe Wiese
-            p = Math.floor((Math.random() * 3) + 0);
-            switch (p) {
-                case 0:
-                    drawFlower_1(x, y, "red", "yellow");
-                    break;
-                case 1:
-                    drawFlower_2(x, y, "white", "white");
-                    break;
-                case 2:
-                    drawFlower_3(x, y);
-                    break;
-                default:
-                    break;
-            }
-        }
     }
     function drawBienenkorb(_x, _y) {
         L7_Classes.crc2.beginPath();
@@ -255,129 +234,6 @@ var L7_Classes;
         L7_Classes.crc2.closePath();
         L7_Classes.crc2.fill();
     }
-    //BLUME 1 
-    function drawFlower_1(_x, _y, _strokeColor, _fillColor) {
-        //Grashalm + Blätter
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#185A18";
-        L7_Classes.crc2.fillRect(_x, _y - 40, 2.5, 40);
-        L7_Classes.crc2.ellipse(_x - 6.5, _y - 25, 2.5, 9.5, -45 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.ellipse(_x + 11, _y - 18, 3, 11.5, 45 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        //Blüte
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "red";
-        L7_Classes.crc2.arc(_x - 7, _y - 49, 7, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "red";
-        L7_Classes.crc2.arc(_x + 9, _y - 49, 7, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.arc(_x + 1, _y - 54, 7, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.arc(_x + 7, _y - 39, 7, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.arc(_x - 5, _y - 39, 7, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = _fillColor;
-        L7_Classes.crc2.strokeStyle = _strokeColor;
-        L7_Classes.crc2.arc(_x + 1, _y - 45, 5, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-    }
-    function drawFlower_2(_x, _y, _strokeColor, _fillColor) {
-        //Grashalm + Blätter
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#185A18";
-        L7_Classes.crc2.fillRect(_x, _y - 25, 2, 25);
-        L7_Classes.crc2.ellipse(_x - 3.5, _y - 13, 1.6, 6, -35 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.ellipse(_x + 5, _y - 9, 1.8, 6.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        //Blüte
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = _fillColor;
-        for (var i = 0; i < 8; i++) {
-            L7_Classes.crc2.ellipse(_x + 1.2, _y - 30, 2, 10, (i * 22.5) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "orange";
-        L7_Classes.crc2.arc(_x + 1.2, _y - 30, 3.8, 0, 2 * Math.PI);
-        L7_Classes.crc2.fill();
-    }
-    function drawFlower_3(_x, _y) {
-        //Grashalm + Blätter
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#185A18";
-        L7_Classes.crc2.fillRect(_x, _y - 25, 2.4, 25);
-        L7_Classes.crc2.ellipse(_x - 3.5, _y - 14, 2.4, 8, -35 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.ellipse(_x + 5, _y - 17, 2, 7.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        //Blüte
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#C61884";
-        for (var i = 0; i < 5; i++) {
-            L7_Classes.crc2.ellipse(_x + 1.2, _y - 42, 5, 18, (i * 35) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#DF5AC3";
-        for (var i = 0; i < 5; i++) {
-            L7_Classes.crc2.ellipse(_x + 1.2, _y - 42, 3, 14, (i * 35) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#DFC6C3";
-        L7_Classes.crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
-        L7_Classes.crc2.fill();
-    }
-    function drawFlower_4(_x, _y) {
-        //Grashalm + Blätter
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#185A18";
-        L7_Classes.crc2.fillRect(_x, _y - 25, 2.4, 25);
-        L7_Classes.crc2.ellipse(_x - 3.5, _y - 14, 2.4, 8, -35 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.ellipse(_x + 5, _y - 17, 2, 7.5, 35 * Math.PI / 180, 0, 2 * Math.PI);
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        //Blüte
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#DF1818";
-        for (var i = 0; i < 3; i++) {
-            L7_Classes.crc2.ellipse(_x + 1.2, _y - 42, 6, 22, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#DFC318";
-        for (var i = 0; i < 3; i++) {
-            L7_Classes.crc2.ellipse(_x + 1.2, _y - 42, 5, 18, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#DF5A18";
-        for (var i = 0; i < 3; i++) {
-            L7_Classes.crc2.ellipse(_x + 1.2, _y - 42, 5, 14, (i * 60) * Math.PI / 180, 0, 2 * Math.PI);
-        }
-        L7_Classes.crc2.closePath();
-        L7_Classes.crc2.fill();
-        L7_Classes.crc2.beginPath();
-        L7_Classes.crc2.fillStyle = "#DFDF7B";
-        L7_Classes.crc2.arc(_x + 1.2, _y - 42, 3.8, 0, 2 * Math.PI);
-        L7_Classes.crc2.fill();
-    }
     function drawTree(_x, _y) {
         //Stamm
         L7_Classes.crc2.beginPath();
@@ -401,4 +257,4 @@ var L7_Classes;
         L7_Classes.crc2.fill();
     }
 })(L7_Classes || (L7_Classes = {}));
-//# sourceMappingURL=aufgabe7_main.js.map
+//# sourceMappingURL=main.js.map
