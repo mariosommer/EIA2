@@ -15,15 +15,17 @@ namespace L8_Classes {
         }
 
         draw(): void {
-            var img: HTMLImageElement = <HTMLImageElement>document.getElementById("HonigBiene");
-            // crc2.drawImage(img, this.x, this.y, this.size, this.size); Unterschiedliche Bienengröße
-            crc2.drawImage(img, this.x, this.y, 25, 25);
+
 
             crc2.beginPath();
             crc2.arc(this.x + 8, this.y + 25, this.size, 0, 2 * Math.PI);
             crc2.closePath();
             crc2.fillStyle = "orange";
             crc2.fill();
+
+            var img: HTMLImageElement = <HTMLImageElement>document.getElementById("HonigBiene");
+            // crc2.drawImage(img, this.x, this.y, this.size, this.size); Unterschiedliche Bienengröße
+            crc2.drawImage(img, this.x, this.y, 25, 25);
         }
 
         setTargetPosition(): void {
@@ -69,14 +71,14 @@ namespace L8_Classes {
                 // console.log(state);
                 console.log(this.nectar);
                 // console.log(this.x);  
-               
+
                 if (Math.abs(xDiff) < 1 && Math.abs(yDiff) < 1) {
                     state = false;
                     if (this.nectar > 2) {
                         state = false;
                         this.setTargetBienenstock();
                     }
-                  }
+                }
 
                 else {
                     this.x += xDiff * this.speed;
@@ -92,7 +94,7 @@ namespace L8_Classes {
                     state = true;
                     this.setTargetPosition();
                 }
-                
+
                 else {
                     this.x += xDiff * this.speed;
                     this.y += yDiff * this.speed;

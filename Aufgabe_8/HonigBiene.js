@@ -16,14 +16,14 @@ var L8_Classes;
             //  this.setTargetBienenstock();
         }
         HonigBiene.prototype.draw = function () {
-            var img = document.getElementById("HonigBiene");
-            // crc2.drawImage(img, this.x, this.y, this.size, this.size); Unterschiedliche Bienengröße
-            L8_Classes.crc2.drawImage(img, this.x, this.y, 25, 25);
             L8_Classes.crc2.beginPath();
             L8_Classes.crc2.arc(this.x + 8, this.y + 25, this.size, 0, 2 * Math.PI);
             L8_Classes.crc2.closePath();
             L8_Classes.crc2.fillStyle = "orange";
             L8_Classes.crc2.fill();
+            var img = document.getElementById("HonigBiene");
+            // crc2.drawImage(img, this.x, this.y, this.size, this.size); Unterschiedliche Bienengröße
+            L8_Classes.crc2.drawImage(img, this.x, this.y, 25, 25);
         };
         HonigBiene.prototype.setTargetPosition = function () {
             var x = Math.round(Math.random() * (L8_Classes.pflanzen.length - 1));
