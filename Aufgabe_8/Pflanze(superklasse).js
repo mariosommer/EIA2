@@ -6,9 +6,6 @@ var L8_Classes;
             this.y = _y;
             this.setRandomPosition();
         }
-        //           update(): void {
-        //            this.draw();
-        //        }
         //Zufallsposition für die Blumen erstellen und 
         PflanzeSuperklasse.prototype.setRandomPosition = function () {
             //            let l: number = Math.floor((Math.random() * 4) + 0);

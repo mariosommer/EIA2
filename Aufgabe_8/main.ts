@@ -1,7 +1,7 @@
-/* Aufgabe: Aufgabe 7
+/* Aufgabe: Aufgabe 8
 Name: Mario Sommer
 Matrikel: 254785
-Datum: 11.05.2017
+Datum: 21.05.2017
 Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
@@ -16,8 +16,9 @@ namespace L8_Classes {
 
     let bienen: BieneSuperklasse[] = [];
     export let pflanzen: PflanzeSuperklasse[] = [];
-    let n: number = 3; //Anzahl Bienen
-    let numberFlowers: number = Math.floor((Math.random() * 10) + 4); //Zufallszahl zwischen 4 - 14 //Nur im Hintergrund
+    let n: number = 10; //Anzahl NormaleBienen
+    let u: number = 5; //Anzahl HonigBienen
+    let numberFlowers: number = Math.floor((Math.random() * 12) + 8); //Zufallszahl zwischen 8 - 12 //Nur im Hintergrund
     let p: number = 6; //Anzahl feste Blumen
     let imgData: ImageData;
 
@@ -57,32 +58,15 @@ namespace L8_Classes {
         drawTree(700, 210);
         drawBienenkorb(700, 295);
 
-
-
-
-        //          //Erstellen der speziellen Blumen und speichern in einem Array
-        //        for (let i: number = 0; i < 5; i++) {
-        //           let s: PflanzeSuperklasse = new RoteBlume(50, 50);
-        //
-        //           pflanzen.push(s);
-        //        }
-        //           console.log(PflanzeSuperklasse);
-
-        
-//        // Feste Blumen im Hintergrund ohne Array
-//        for (let i: number = 0; i < numberFlowers; i++) {
-//            let t: PflanzeSuperklasse = new RoteBlume(0, 0);      
-//        }
-
-         // Feste Blumen im Hintergrund ohne Array// Keine Nektarblumen
+        // Feste Blumen im Hintergrund ohne Array// Keine Nektarblumen
         for (let i: number = 0; i < numberFlowers; i++) {
 
-            switch (Math.floor((Math.random() * 4) + 0)) {
+            switch (Math.floor((Math.random() * 5) + 0)) {
                 case 0:
                     new LilaBlume(0, 0);
                     break;
                 case 1:
-                    new RoteBlume(0, 0);
+                    new WeißeBlume(0, 0);
                     break;
                 case 2:
                     new WeißeBlume(0, 0);
@@ -90,13 +74,12 @@ namespace L8_Classes {
                 case 3:
                     new WeißeBlume(0, 0);
                     break;
+                case 4:
+                    new RoteBlume(0, 0);
                 default:
                     break;
             }
         }
-
-
-
 
         imgData = crc2.getImageData(0, 0, 800, 480);
 
@@ -105,27 +88,24 @@ namespace L8_Classes {
         for (let i: number = 0; i < 6; i++) {
             let f: PflanzeSuperklasse = new OrangeneBlume(0, 0);
             pflanzen.push(f);
-        }       
+        }
         console.log(pflanzen);
 
-        
-        
-//        //Bienen erstellen + (Array) -> HonigBienen
-//        for (let i: number = 0; i < n; i++) {
-//            let s: BieneSuperklasse = new HonigBiene(720, 280);
-//            bienen[i] = s;
-//        }
-        
+
         //Bienen erstellen + (Array) -> NormaleBienen
         for (let i: number = 0; i < n; i++) {
             let s: BieneSuperklasse = new NormaleBiene(720, 280);
-            let n: BieneSuperklasse = new HonigBiene(720, 280);
-         //   bienen[i] = n;
-         //   bienen[i] = s;
+
+            //   bienen[i] = s;   
             bienen.push(s);
-            bienen.push(n);     
         }
-        
+
+        for (let i: number = 0; i < u; i++) {
+            let n: BieneSuperklasse = new HonigBiene(720, 280);
+            //   bienen[i] = n;
+            bienen.push(n);
+        }
+
         console.log(bienen);
 
         window.setTimeout(animate, 20);
@@ -158,7 +138,7 @@ namespace L8_Classes {
     function addBiene(_event: Event): void {
         let s: BieneSuperklasse = new HonigBiene(720, 280);
         bienen.push(s);
-        
+
         let n: BieneSuperklasse = new NormaleBiene(720, 280);
         bienen.push(n);
     }
