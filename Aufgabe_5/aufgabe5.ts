@@ -6,15 +6,16 @@ Hiermit versichere ich, dass ich diesen
 Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
 Code in Zusammenarbeit mit Matthias Fischer
-*/ 
+*/
+
 
 
 namespace L4_Canvas {
     window.addEventListener("load", init);
     let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     let crc2: CanvasRenderingContext2D;
-    let x : number [] = [];
-    let y : number [] = [];
+    let x: number[] = [];
+    let y: number[] = [];
     let n = 10;
     let radius: number = 10;
     let imgData = crc2.getImageData(0, 0, 800, 480);
@@ -43,7 +44,7 @@ namespace L4_Canvas {
         drawMountain(0, 301, "black", "grey");
 
         //Farbverlauf Wiese
-        var gradient2 : any = crc2.createLinearGradient(0, 0, 800, 0);
+        var gradient2: any = crc2.createLinearGradient(0, 0, 800, 0);
         gradient2.addColorStop("0", "#185A18");
         gradient2.addColorStop("0.5", "#188218");
         gradient2.addColorStop("1.0", "#18C339");
@@ -73,7 +74,7 @@ namespace L4_Canvas {
         drawFlower_4(620, 470);
 
         drawBienenkorb(700, 295);
-        
+
         //Funktion Canvas Bild abspeichern
         copyPicture();
 
@@ -98,7 +99,7 @@ namespace L4_Canvas {
         updateBienen()
         window.setTimeout(animate, 20);
     }
- 
+
     function drawBiene(_x: number, _y: number) {
         //  crc2.fillStyle = "#000000";
         //  crc2.fillRect(_x, _y, 10,        

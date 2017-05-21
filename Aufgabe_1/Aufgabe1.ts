@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var n = 5;
-    var c;
+    var c: any;
     var x = 0;
     var y = 0;
     for (var i = 0; i < n; i++) {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
         }
     }
-    function placeDiv(_color, _x, _y, _width, _height) {
+    function placeDiv(_color:string, _x:number, _y:number, _width:number, _height:number) {
         var div = document.createElement("div");
         document.body.appendChild(div);
         var s = div.style;

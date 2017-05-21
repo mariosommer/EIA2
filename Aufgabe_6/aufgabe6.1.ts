@@ -151,7 +151,7 @@ namespace L4_Canvas {
     
     function drawBiene(_s: Biene): void {
         
-       var img: HTMLImageElement = document.getElementById("biene");
+       var img: HTMLImageElement = <HTMLImageElement> document.getElementById("biene");
        crc2.drawImage(img, _s.x, _s.y, _s.size, _s.size);
     }
 
