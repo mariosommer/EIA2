@@ -1,3 +1,57 @@
+
+
+body {
+	background-image:url(waffel.png);
+}
+
+
+h1{
+	color:white;
+}
+
+div{
+	padding: 0% 1% 1% 1%;
+}
+
+#Auswahl{
+	background-color:#FFC098;
+	/*background: hsla(350,50%,50%,0.3); */
+	
+	width: 96%;
+	height: auto;
+	margin: 4% 1% 1% 1%;
+}
+
+#Fortschritt{
+	background-color:#E89F8A;
+	
+	width: 96%;
+	height: auto;
+	margin: 4% 1% 1% 1%;	
+}
+
+#Zusammenfassung{
+	background-color:#FFA9A5;
+	
+	width: 96%;
+	height: auto;
+	margin: 1% 1% 1% 1%;	
+}
+
+#Kontrolle{
+	background-color:#E8A2C1;
+		
+	width: 96%;
+	height: auto;
+	margin: 1% 1% 1% 1%;	
+}
+
+
+
+
+
+@media screen and (min-width:570px){
+
 body {
 	background-image:url(waffel.png);
 }
@@ -42,4 +96,6 @@ div{
 	width: 46%;
 	height: auto;
 	margin: 1% 1% 1% 1%;	
+}
+
 }
