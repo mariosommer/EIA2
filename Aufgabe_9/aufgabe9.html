@@ -4,90 +4,69 @@
 <head>
 <meta charset="utf-8" />
 <title>FormElements</title>
-<link rel="stylesheet" href="aufgabe9.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="aufgabe9.css" type="text/css"
+	media="screen" />
 <script src="aufgabe9.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body>
-	
 
-	
+<body>
 	<h1>ONLINE EISDEALER</h1>
-	<div id="Auswahl">
-		<p>Auswahl</p>
-		
-		<fieldset id="radio">
-		<legend> Waffel oder Becher? </legend>
-		<input type="radio" name="Radiogroup" value="Waffel" id="radio1" />
-		<label for="radio1">Waffel (0,30€)</label>
-		<input type="radio" name="Radiogroup" value="Becher" id="radio2"/>
-		<label for="radio2">Becher (0,50€)</label>
+	<div id="Auswahl">		
+		<div id="main2"></div>	
+		<fieldset id="sorte">
+			<h2>Eiskugeln (x 0,80€)</h2>
+			<div>
+				<img src="eis.png">
+			</div>
 		</fieldset>
-		<br>
-		
-		<fieldset id="select">
-		<legend> Anzahl Kugeln (x 1,00€)? (Momentan nur eine Kugel pro Person möglich (Lieferengpass)) </legend>
-		Kugeln
-		<input type="number" name="Stepper" step="1" min="1" max="1" value="0"/>
-		
-	</fieldset>
-		<br>
-		<fieldset>
-		Eissorte
-		<select name="Select" id="select">
-			
-			<option value="Schoko">Schoko</option>
-			<option value="Erdbeere" selected>Erdbeere</option>
-			
-			<option value="Haselnuss">Haselnuss</option>
-			<option value="Vanille">Vanille</option>
-		</select>
-		
-	</fieldset>
-	<br>
-	
-	<fieldset id="checkbox">
-		<legend> Zusatz </legend>
-		<input type="checkbox" name="Checkbox1" value="Streusel" id="check1"/>
-		<label for="check1">Streusel (0,30€)</label>
-		<input type="checkbox" name="Checkbox2" value="Sahne" id="check2"/>
-		<label for="check2">Sahne (0,40€)</label>
-		<input type="checkbox" name="Checkbox3" value="Schokosoße" id="check3"/>
-		<label for="check3">Schokosoße (0,50€)</label>
-	</fieldset>
-	
-	<br>
-	
-	<fieldset id="radio">
-		<legend> Abholung oder Lieferung? </legend>
-		<input type="radio" name="Radiogroup2" value="Abholung" id="radio1" />
-		<label for="radio1">Abholung</label>
-		<input type="radio" name="Radiogroup2" value="Lieferung" id="radio2"/>
-		<label for="radio2">Lieferung</label>
-		<hr/>
-		Name und Adresse
-		<textarea name="Area" cols="30" rows="3" placeholder="Name und Adresse hier"></textarea>
-		
+
+		<fieldset id="toppings">
+			<h2>Topping (x 0.50€)</h2>
 		</fieldset>
-	
-		
+
+		<fieldset id="delivery">
+			<h2>Lieferung</h2>
+		</fieldset>
+
+		<fieldset id="Kundendaten">
+			<h2>Kundendaten</h2>
+			<input type="text" name="Vorname" placeholder="Vorname" required
+				id="vorname" /> <input type="text" name="Name" placeholder="Name"
+				required id="name" /> <input type="text" name="Straße"
+				placeholder="Straße/Hausnummer" required id="straße" /> <input
+				type="text" name="Postleitzahl" pattern="[0-9]{5}"
+				placeholder="Postleitzahl" required id="plz" /> <input type="text"
+				name="Ort" placeholder="Ort" required id="ort" /> <input
+				type="email" name="E-Mail" placeholder="E-Mail" required id="email" />
+		</fieldset>
 	</div>
+
 	<div id="Fortschritt">
-		<p>Fortschritt</p>
-		<p>Aktueller Preis</p>
+		<fieldset>
+			<h2>Aktueller Preis</h2>
+			</p>
+			<div id="Preis"></div>
+		</fieldset>
 	</div>
-	
+
 	<div id="Zusammenfassung">
-		<p>Zusammenfassung</p>
+		<fieldset>
+			<h2>Zusammenfassung</h2>
+			<div id="Behälter"></div>
+			<div id="Kugeln"></div>
+			<div id="Eissorte"></div>
+			<div id="ToppingZusammenfassung"></div>
+			<div id="LieferungZusammenfassung"></div>
+		</fieldset>
 	</div>
-	
+
 	<div id="Kontrolle">
-		<p> Button zur Überprüfung </p>
-	<fieldset>
-		Button
-		<button name="Button" type="button">Click me!</button>
-	</fieldset>
-		<p> Ausgabe Fehler oder alles in Ordnung</p>
+		<fieldset>
+			<h2>Button zur Überprüfung</h2>
+			<button name="Button" type="button" id="button">Bestellung
+				abschicken</button>
+			<img src="eisss.png">
+		</fieldset>
 	</div>
-	
 </body>
 </html>
