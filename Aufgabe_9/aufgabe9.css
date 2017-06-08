@@ -37,6 +37,11 @@ label {
 	margin-top: 1.3em;
 }
 
+#logo{
+	position:relative;
+	left:20%;
+}
+
 #sorte input {
 	position: relative;
 	top: 0.4em;
@@ -169,6 +174,12 @@ button:hover {
 fieldset {
 	width: 38%;
 	}
+
+#logo{
+	position:relative;
+	left:-20%;
+	right:20%;
+}
 	
 #sorte {
 	width: 40%;
@@ -211,6 +222,8 @@ div {
 	}
 	
 #Auswahl {
+	position:relative;
+	top:8em;
 	background-color: #FFC098;
 	float: left;
 	width: 60%;
@@ -219,6 +232,8 @@ div {
 	}
 
 #Fortschritt {
+	position:relative;
+	top:-4.8em;
 	float: right;
 	width: 32%;
 	height: auto;
@@ -226,6 +241,8 @@ div {
 	}
 	
 #Zusammenfassung {	
+	position:relative;
+	top:-4.8em;
 	background-color: #FFA9A5;
 	float: right;
 	width: 32%;
@@ -234,6 +251,8 @@ div {
 	}
 	
 #Kontrolle {
+	position:relative;
+	top:-4.8em;
 	background-color: #E8A2C1;
 	float: right;
 	width: 32%;
