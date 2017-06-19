@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>FormElements</title>
+<link rel="stylesheet" href="aufgabe9.css" type="text/css"
+	media="screen" />
+<script src="aufgabe9.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	
+	<form action="https://eisshop.herokuapp.com" method="get">
+	
+	<img id="logo" src="logoEis.png">
+	<div id="Auswahl">		
+		<div id="main2"></div>	
+		<fieldset id="sorte">
+			<h2>Eiskugeln (x 0,80€)</h2>
+			<div>
+				<img src="eis.png">
+			</div>
+		</fieldset>
+
+		<fieldset id="toppings">
+			<h2>Topping (x 0.50€)</h2>
+		</fieldset>
+
+		<fieldset id="delivery">
+			<h2>Lieferung</h2>
+		</fieldset>
+
+		<fieldset id="Kundendaten">
+			<h2>Kundendaten</h2>
+			<input type="text" name="Vorname" placeholder="Vorname" required
+				id="vorname" /> <input type="text" name="Name" placeholder="Name"
+				required id="name" /> <input type="text" name="Straße"
+				placeholder="Straße/Hausnummer" required id="straße" /> <input
+				type="text" name="Postleitzahl" pattern="[0-9]{5}"
+				placeholder="Postleitzahl" required id="plz" /> <input type="text"
+				name="Ort" placeholder="Ort" required id="ort" /> <input
+				type="email" name="E-Mail" placeholder="E-Mail" required id="email" />
+		</fieldset>
+	</div>
+
+	<div id="Fortschritt">
+		<fieldset>
+			<h2>Aktueller Preis</h2>
+			</p>
+			<div id="Preis"></div>
+		</fieldset>
+	</div>
+
+	<div id="Zusammenfassung">
+		<fieldset>
+			<h2>Zusammenfassung</h2>
+			<div id="Behälter"></div>
+			<div id="Kugeln"></div>
+			<div id="Eissorte"></div>
+			<div id="ToppingZusammenfassung"></div>
+			<div id="LieferungZusammenfassung"></div>
+		</fieldset>
+	</div>
+
+	<div id="Kontrolle">
+		<fieldset>
+			<h2>Button zur Überprüfung</h2>
+			<button name="Button" type="button" id="button">Bestellung
+				abschicken</button>
+			<img src="eisss.png">
+		</fieldset>
+	</div>
+</body>
+</html>
