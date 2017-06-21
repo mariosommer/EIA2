@@ -104,11 +104,26 @@ var saveInput;
         var input = document.createElement("input");
         label.innerText = _toppings;
         label.appendChild(input);
-        // Die Art des Inputs wird über den Typ definiert
         input.type = "checkbox";
+        input.value = _toppings;
         label.id = _toppings;
+        input.name = _toppings;
+        //  Toppings.appendChild(input);
         Toppings.appendChild(label);
         inputsToppings.push(input);
+        //            label.innerText = _toppings;
+        //        label.appendChild(input);
+        //        // Die Art des Inputs wird über den Typ definiert
+        //        input.type = "checkbox";
+        //        input.value = _toppings;
+        //        
+        //        label.id = _toppings;
+        //        input.name = "toppings";
+        //        
+        //           
+        //        Toppings.appendChild(input);
+        //        Toppings.appendChild(label);
+        //        inputsToppings.push(input);
     }
     ///////////////////////////Delivery/////////////////////////////    
     function createDelivery() {
@@ -141,14 +156,15 @@ var saveInput;
         document.getElementById("Preis").innerHTML = "Gesamtpreis:" + sum + "€";
         document.getElementById("button").innerHTML = "Bestellen" + " " + "(" + sum + "€" + ")";
     }
-    function createInput(_sort) {
+    function createInput(_sorts) {
         var label = document.createElement("label");
         var input = document.createElement("input");
-        label.innerText = _sort;
+        label.innerText = _sorts;
         label.appendChild(input);
         input.type = "number";
         input.min = "0";
         input.value = "0";
+        input.name = _sorts;
         fieldset.appendChild(label);
         inputsSorts.push(input);
     }
