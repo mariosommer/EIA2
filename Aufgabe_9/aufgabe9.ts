@@ -135,7 +135,9 @@ namespace saveInput {
         label.appendChild(input);
         // Die Art des Inputs wird über den Typ definiert
         input.type = "checkbox";
-        label.id = _toppings;
+      
+        input.value = _toppings;
+        input.name = "toppings";
 
         Toppings.appendChild(label);
         inputsToppings.push(input);
@@ -160,6 +162,7 @@ namespace saveInput {
         label.appendChild(input);
         input.type = "radio";
         input.name = "delivery";
+        input.value = _delivery;
         input.required = true;
         label.id = _delivery;
 
