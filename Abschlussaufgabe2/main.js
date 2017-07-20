@@ -14,6 +14,7 @@ var Abschlussaufgabe;
     var ground = [];
     var background = [];
     Abschlussaufgabe.pipes = [];
+    Abschlussaufgabe.playing = false;
     //  export let pflanzen: PflanzeSuperklasse[] = [];
     var voegel = [];
     Abschlussaufgabe.bird = [];
@@ -27,8 +28,6 @@ var Abschlussaufgabe;
         canvas.style.marginLeft = "20px";
         Abschlussaufgabe.crc2 = canvas.getContext("2d");
         imgData = Abschlussaufgabe.crc2.getImageData(0, 0, 800, 480);
-        // Vogel springen lassen
-        canvas.addEventListener("click", erhoeheYWertVogel);
         //Rohre estellen
         for (var i = 0; i < 1; i++) {
             var r = new Abschlussaufgabe.Pipe(0, 0, 0, 0);
@@ -54,7 +53,34 @@ var Abschlussaufgabe;
             var b = new Abschlussaufgabe.Bird(50, 100);
             Abschlussaufgabe.bird.push(b);
         }
+        // Vogel springen lassen
+        canvas.addEventListener("click", erhoeheYWertVogel);
+        //     canvas.addEventListener("touchstart", erhoeheYWertVogel     
+        drawStartScreen();
+        //     canvas.addEventListener("click", handleMouseClick, false);
+        document.getElementById("vogel1").addEventListener("click", handleMouseClick, false);
+        document.getElementById("vogel2").addEventListener("click", handleMouseClick, false);
+        document.getElementById("vogel3").addEventListener("click", handleMouseClick, false);
+        // window.setTimeout(animate, 20);
+    }
+    function startGame() {
         window.setTimeout(animate, 20);
+        Abschlussaufgabe.playing = true;
+    }
+    function handleMouseClick(_event) {
+        var element = document.getElementById("vogel1");
+        element.style.display = "none";
+        var element = document.getElementById("vogel2");
+        element.style.display = "none";
+        var element = document.getElementById("vogel3");
+        element.style.display = "none";
+        var element = document.getElementById("startscreen");
+        element.style.display = "none";
+        if (Abschlussaufgabe.playing == false) {
+            startGame();
+        }
+    }
+    function drawStartScreen() {
     }
     function animate(_width, _height) {
         Abschlussaufgabe.crc2.putImageData(imgData, 0, 0); //Bild

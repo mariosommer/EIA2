@@ -20,6 +20,69 @@ div{
 	display:none;
 }
 
+
+#startscreen{
+
+	width:800px;
+	height:480px;
+
+
+	color:white;
+	position:absolute;
+	top:8px;
+	left:26px;
+
+	
+
+	display:block;
+}
+
+#vogel1{
+
+		width:80px;
+	height:180px;
+	position:fixed;
+
+	color:white;
+	position:absolute;
+	top: 168px;
+	left: 150px;
+	
+
+	display:block;
+}
+
+
+#vogel2{
+
+		width:80px;
+	height:80px;
+	position:fixed;
+
+	color:white;
+	position:absolute;
+	top: 198px;
+	left: 392px;
+	
+
+	display:block;
+}
+
+#vogel3{
+
+		width:80px;
+	height:80px;
+	position:fixed;
+
+	color:white;
+	position:absolute;
+	top: 168px;
+	left: 604px;
+	
+
+	display:block;
+}
+
 p{
 	font-size: 80px;
 	position:relative;

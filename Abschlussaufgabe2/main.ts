@@ -22,6 +22,8 @@ namespace Abschlussaufgabe {
 
     export let pipes: Pipe[] = [];
 
+    export let playing: boolean = false;
+
     //  export let pflanzen: PflanzeSuperklasse[] = [];
 
 
@@ -30,7 +32,7 @@ namespace Abschlussaufgabe {
 
     export let bird: Bird[] = [];
 
-       export let z: number = 0;
+    export let z: number = 0;
 
     console.log(z);
 
@@ -50,8 +52,7 @@ namespace Abschlussaufgabe {
         crc2 = canvas.getContext("2d");
         imgData = crc2.getImageData(0, 0, 800, 480);
 
-        // Vogel springen lassen
-        canvas.addEventListener("click", erhoeheYWertVogel);
+
 
         //Rohre estellen
         for (let i: number = 0; i < 1; i++) {
@@ -60,10 +61,10 @@ namespace Abschlussaufgabe {
         }
 
         //Vogel
-                for (let i: number = 0; i < 1; i++) {
-                    let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
-                    voegel.push(v);
-                }
+        for (let i: number = 0; i < 1; i++) {
+            let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
+            voegel.push(v);
+        }
 
         //Boden
         for (let i: number = 0; i < n; i++) {
@@ -83,8 +84,51 @@ namespace Abschlussaufgabe {
             bird.push(b);
         }
 
-        window.setTimeout(animate, 20);
+        // Vogel springen lassen
+        canvas.addEventListener("click", erhoeheYWertVogel);
+        //     canvas.addEventListener("touchstart", erhoeheYWertVogel     
+           drawStartScreen();     
+       //     canvas.addEventListener("click", handleMouseClick, false);
+        
+        document.getElementById("vogel1").addEventListener("click", handleMouseClick, false);
+        document.getElementById("vogel2").addEventListener("click", handleMouseClick, false);
+        
+        document.getElementById("vogel3").addEventListener("click", handleMouseClick, false);
+        
+       // window.setTimeout(animate, 20);
     }
+
+    function startGame(): void {
+        window.setTimeout(animate, 20);
+        playing = true;
+    }
+
+    function handleMouseClick(_event: MouseEvent) {
+
+        var element: any = document.getElementById("vogel1");
+                    element.style.display = "none";
+           var element: any = document.getElementById("vogel2");
+                    element.style.display = "none";
+          var element: any = document.getElementById("vogel3");
+                    element.style.display = "none";
+         var element: any = document.getElementById("startscreen");
+                    element.style.display = "none";
+        
+        if (playing == false) {
+            startGame();
+            
+               
+        }
+    }
+
+
+
+
+    function drawStartScreen(): void {
+        
+
+    }
+
 
     function animate(_width: number, _height: number): void {
 
