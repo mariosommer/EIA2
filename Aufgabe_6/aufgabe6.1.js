@@ -30,8 +30,8 @@ var L4_Canvas;
             s.x = 720; //Startposition
             s.y = 280;
             s.size = Math.random() * 20 + 10; //Größe      
-            s.xspeed = Math.random() * (xmax - xmin) + xmin; //Speed in x-Richtung 
-            s.yspeed = Math.random() * (ymax - ymin) + ymin; //Speed in y-Richtung 
+            //  s.xspeed = Math.random() * (xmax - xmin) + xmin; //Speed in x-Richtung 
+            //  s.yspeed = Math.random() * (ymax - ymin) + ymin; //Speed in y-Richtung 
             bienen[i] = s;
         }
         var gradient = crc2.createLinearGradient(0, 300, 0, 10);
@@ -78,8 +78,8 @@ var L4_Canvas;
         crc2.putImageData(imgData, 0, 0);
         for (var i = 0; i < bienen.length; i++) {
             var s = bienen[i];
-            s.x += Math.random() * 2 - 2 - s.xspeed;
-            s.y += Math.random() * 2 - 1 - s.yspeed;
+            s.x += 2 - 5 - s.xspeed;
+            //   s.y +=  2 - 3 - s.yspeed;
             //Biene kommt wieder auf der gegenüberliegenden Seite rein aus der sie rausfliegt        
             //rechts raus, links rein
             if (s.x >= crc2.canvas.width + 10) {
