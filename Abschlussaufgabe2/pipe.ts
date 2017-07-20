@@ -96,7 +96,7 @@ namespace Abschlussaufgabe {
             this.crashTop();
             this.crashBottom();
             this.move();
-         //   this.life();
+            this.life();
             this.draw();
         }
 
