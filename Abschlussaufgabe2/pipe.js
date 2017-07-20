@@ -67,7 +67,7 @@ var Abschlussaufgabe;
             this.crashTop();
             this.crashBottom();
             this.move();
-            this.life();
+            //   this.life();
             this.draw();
         };
         Pipe.prototype.drawPipeBottom = function () {
@@ -84,14 +84,14 @@ var Abschlussaufgabe;
             Abschlussaufgabe.crc2.drawImage(img, this.z + 800, this.y3 - 180, 60, 180);
             Abschlussaufgabe.crc2.drawImage(img, this.z + 1200, this.y4 - 180, 60, 180);
         };
-        Pipe.prototype.life = function () {
-            Abschlussaufgabe.crc2.fillStyle = "#F4F4F4";
-            Abschlussaufgabe.crc2.fillRect(100, 12, 1050 / 10, 18);
-            Abschlussaufgabe.crc2.fillStyle = "#BF1319";
-            Abschlussaufgabe.crc2.fillRect(100, 12, this.lifeBird / 10, 18);
-            var img2 = document.getElementById("lebensanzeige");
-            Abschlussaufgabe.crc2.drawImage(img2, 10, 10, 200, 21);
-        };
+        //        life(): void {
+        //            crc2.fillStyle = "#F4F4F4";
+        //            crc2.fillRect(100, 12, 1050 / 10, 18);
+        //            crc2.fillStyle = "#BF1319";
+        //            crc2.fillRect(100, 12, this.lifeBird / 10, 18);
+        //            var img2: HTMLImageElement = <HTMLImageElement>document.getElementById("lebensanzeige");
+        //            crc2.drawImage(img2, 10, 10, 200, 21);
+        //        }
         Pipe.prototype.crashTop = function () {
             this.xBird = Abschlussaufgabe.bird[0].x;
             this.yBird = Abschlussaufgabe.bird[0].y;
