@@ -1,7 +1,5 @@
 namespace Abschlussaufgabe {
 
-
-
     export class Bird {
         x: number;
         z: number;
@@ -10,15 +8,8 @@ namespace Abschlussaufgabe {
         velocity: number = 0;
         lift: number = -36;
 
-
-
-
         constructor(_x: number, _y: number, _z: number) {
-
-
-
             this.draw();
-
             this.update();
         }
 
@@ -33,19 +24,12 @@ namespace Abschlussaufgabe {
             this.y += this.velocity;
         }
 
-                up(): void {
+        up(): void {
             this.velocity += this.lift;
         }
-
-
-        
 
         draw(): void {
             //abstract
         }
-
-
-
-
     }
 }

@@ -15,10 +15,8 @@ var Abschlussaufgabe;
     var background = [];
     Abschlussaufgabe.pipes = [];
     Abschlussaufgabe.gameON = false;
-    //  export let pflanzen: PflanzeSuperklasse[] = [];
     var birdChoice;
-    var test = 0;
-    console.log(test);
+    var distance = 0;
     Abschlussaufgabe.birds = [];
     // export let bird: Bird[] = [];  
     Abschlussaufgabe.z = 0;
@@ -31,17 +29,26 @@ var Abschlussaufgabe;
         canvas.style.marginLeft = "20px";
         Abschlussaufgabe.crc2 = canvas.getContext("2d");
         imgData = Abschlussaufgabe.crc2.getImageData(0, 0, 800, 480);
+        drawGame();
+        // Vogel springen lassen
+        canvas.addEventListener("click", erhoeheYWertVogel);
+        canvas.addEventListener("touchstart", erhoeheYWertVogel);
+        document.getElementById("vogel1").addEventListener("click", startWithBird1);
+        document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
+        document.getElementById("vogel2").addEventListener("click", startWithBird2);
+        document.getElementById("vogel2").addEventListener("touchstart", startWithBird2);
+        document.getElementById("vogel3").addEventListener("click", startWithBird3);
+        document.getElementById("vogel3").addEventListener("touchstart", startWithBird3);
+        document.getElementById("reset").addEventListener("click", reload);
+        document.getElementById("reset").addEventListener("touchstart", reload);
+        // window.setTimeout(animate, 20);
+    }
+    function drawGame() {
         //Rohre estellen
         for (var i = 0; i < 1; i++) {
-            var r = new Abschlussaufgabe.Pipe(0, 0, 0, test);
+            var r = new Abschlussaufgabe.Pipe(0, 0, 0, distance);
             Abschlussaufgabe.pipes.push(r);
-            console.log(test);
         }
-        //Vogel
-        //        for (let i: number = 0; i < 1; i++) {
-        //            let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
-        //            voegel.push(v);
-        //        }
         //Boden
         for (var i = 0; i < n; i++) {
             var s = new Abschlussaufgabe.Ground(0, 420, 0);
@@ -52,24 +59,6 @@ var Abschlussaufgabe;
             var t = new Abschlussaufgabe.Background(0, 420, 0);
             background.push(t);
         }
-        //        //Vogel
-        //        for (let i: number = 0; i < 1; i++) {
-        //            let b: Bird = new Bird3(50, 100, 0);
-        //            birds.push(b);
-        //        }
-        // Vogel springen lassen
-        canvas.addEventListener("click", erhoeheYWertVogel);
-        //     canvas.addEventListener("touchstart", erhoeheYWertVogel     
-        //     canvas.addEventListener("click", handleMouseClick, false); 
-        document.getElementById("vogel1").addEventListener("click", startWithBird1);
-        document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
-        document.getElementById("vogel2").addEventListener("click", startWithBird2);
-        document.getElementById("vogel2").addEventListener("touchstart", startWithBird2);
-        document.getElementById("vogel3").addEventListener("click", startWithBird3);
-        document.getElementById("vogel3").addEventListener("touchstart", startWithBird3);
-        document.getElementById("reset").addEventListener("click", reload);
-        document.getElementById("reset").addEventListener("touchstart", reload);
-        // window.setTimeout(animate, 20);
     }
     function startGame() {
         var element1 = document.getElementById("vogel1");
@@ -122,14 +111,6 @@ var Abschlussaufgabe;
             var s_2 = ground[i];
             s_2.update();
         }
-        //        for (let i: number = 0; i < voegel.length; i++) {
-        //            let s: VogelSuperklasse = voegel[i];
-        //            s.update();
-        //        }
-        //        for (let i: number = 0; i < bird.length; i++) {
-        //            let s: Bird =;
-        //            s.update();
-        //        }
         for (var i = 0; i < Abschlussaufgabe.birds.length; i++) {
             var s_3 = Abschlussaufgabe.birds[i];
             s_3.update();
@@ -154,6 +135,9 @@ var Abschlussaufgabe;
         for (var i = 0; i < n; i++) {
             var r = Abschlussaufgabe.birds[i];
             r.up();
+            //Flügelschlag
+            var audio = document.getElementById("audioBird");
+            audio.play();
         }
     }
 })(Abschlussaufgabe || (Abschlussaufgabe = {}));

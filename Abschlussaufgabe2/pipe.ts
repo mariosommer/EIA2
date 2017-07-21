@@ -18,12 +18,7 @@ namespace Abschlussaufgabe {
         lifeBird: number = 1040;
         score: number;
         highscore: HTMLDivElement = document.createElement("div");
-        
-         highscore2: HTMLDivElement = document.createElement("div");
-        
-        endscore2: any = document.getElementsByTagName("div");
-        
-        
+        highscore2: HTMLDivElement = document.createElement("div");
 
         constructor(_x: number, _y: number, _z: number, _distance: number) {
             this.setRandomYHighTop();
@@ -31,21 +26,14 @@ namespace Abschlussaufgabe {
             this.x = _x;
             this.z = _z;
             this.distance = _distance;
-            this.draw();
         }
 
         move(): void {
-
             if (this.lifeBird > 0) {
-
                 this.x += - 6.5;
                 this.z += - 6.5;
-
-                //distance
                 this.distance += 6.5;
-
             }
-
 
             //lvl2
             if (this.distance > 2600 && this.lifeBird > 0) {
@@ -61,7 +49,7 @@ namespace Abschlussaufgabe {
                 this.distance += 4;
             }
 
-            //lvl3
+            //lvl4
             if (this.distance > 15000 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
@@ -80,10 +68,6 @@ namespace Abschlussaufgabe {
                 this.z = crc2.canvas.width - 800;
                 this.setRandomYHighBottom();
             }
-        }
-
-        draw(): void {
-            //abstract
         }
 
         setRandomYHighTop(): void {
@@ -111,7 +95,6 @@ namespace Abschlussaufgabe {
             this.crashBottom();
             this.move();
             this.life();
-            this.draw();
             this.calculateScore();
         }
 
@@ -141,7 +124,6 @@ namespace Abschlussaufgabe {
         }
 
         crashTop(): void {
-
             this.xBird = birds[0].x;
             this.yBird = birds[0].y;
 
@@ -157,30 +139,14 @@ namespace Abschlussaufgabe {
 
                 if (this.lifeBird < 0) {
 
-
                     console.log("Game Over");
-                    var element: any = document.getElementById("gameOver");
+                    var element: HTMLElement = document.getElementById("gameOver");
                     element.style.display = "block";
-                    
-      
-                    
-                                this.highscore2.innerText = "Your Score:" + " " + this.score;
-            document.body.appendChild(this.highscore2);
-                    var element: any = document.getElementById("reset");
-                    element.style.display = "block";
-                    
-//                     crc2.fillStyle = "black";
-//                crc2.fillRect(10, 10, 800, 480);
-//                    
-//                    
-//                          // Text 
-//                crc2.stroke();
-//                crc2.fillStyle = "white";
-//                crc2.font = "100px Lato";
-//                crc2.fillText("Das Große Krabbeln", 250, 250);
-//                crc2.font = "60px Lato";
 
-
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
+                    var element2: HTMLElement = document.getElementById("reset");
+                    element2.style.display = "block";
                 }
             }
 
@@ -196,30 +162,15 @@ namespace Abschlussaufgabe {
 
                 if (this.lifeBird < 0) {
 
-
                     console.log("Game Over");
-                    var element: any = document.getElementById("gameOver");
-                    element.style.display = "block";
-                    
-  
-                    
-                                this.highscore2.innerText = "Your Score:" + " " + this.score;
-            document.body.appendChild(this.highscore2);
-                    
-                    var element: any = document.getElementById("reset");
-                    element.style.display = "block";
-                    
-//                     crc2.fillStyle = "black";
-//                crc2.fillRect(10, 10, 800, 480);
-//                    
-//                          // Text 
-//                crc2.stroke();
-//                crc2.fillStyle = "white";
-//                crc2.font = "100px Lato";
-//                crc2.fillText("Das Große Krabbeln", 250, 250);
-//                crc2.font = "60px Lato";
+                    var element3: HTMLElement = document.getElementById("gameOver");
+                    element3.style.display = "block";
 
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
 
+                    var element4: HTMLElement = document.getElementById("reset");
+                    element4.style.display = "block";
                 }
             }
         }
@@ -242,36 +193,14 @@ namespace Abschlussaufgabe {
 
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
-                    var element: any = document.getElementById("gameOver");
-     
-                    
-                    element.style.display = "block";
-                    
-   
-      // Text 
-                                this.highscore2.innerText = "Your Score:" + " " + this.score;
-            document.body.appendChild(this.highscore2);
-                    
-                    var element: any = document.getElementById("reset");
-                    element.style.display = "block";
-                    
-                    var element: any = document.getElementById("reset");
-                    element.style.display = "block";
-                    
-                    
-                    
-//                     crc2.fillStyle = "black";
-//                crc2.fillRect(10, 10, 800, 480);
-//                    
-//                crc2.stroke();
-//                crc2.fillStyle = "white";
-//                crc2.font = "100px Lato";
-//                crc2.fillText("Das Große Krabbeln", 250, 250);
-//                crc2.font = "60px Lato";
-//
-//
+                    var element5: HTMLElement = document.getElementById("gameOver");
+                    element5.style.display = "block";
 
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
 
+                    var element6: HTMLElement = document.getElementById("reset");
+                    element6.style.display = "block";
                 }
             }
 
@@ -290,28 +219,14 @@ namespace Abschlussaufgabe {
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
 
-                    var element: any = document.getElementById("gameOver");
-                    element.style.display = "block";
-                    
-                    var element: any = document.getElementById("reset");
-                    element.style.display = "block";
-                    
-      
-                    
-                            this.highscore2.innerText = "Your Score:" + " " + this.score;
-            document.body.appendChild(this.highscore2);
-//                    
-//                crc2.fillStyle = "black";
-//                crc2.fillRect(10, 10, 800, 480);
-//                    
-//                crc2.stroke();
-//                crc2.fillStyle = "white";
-//                crc2.font = "100px Lato";
-//                crc2.fillText("Das Große Krabbeln", 250, 250);
+                    var element7: HTMLElement = document.getElementById("gameOver");
+                    element7.style.display = "block";
 
+                    var element8: HTMLElement = document.getElementById("reset");
+                    element8.style.display = "block";
 
-
-
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
                 }
             }
         }
@@ -320,12 +235,6 @@ namespace Abschlussaufgabe {
             this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
             this.highscore.innerText = "Score:" + " " + this.score;
             document.body.appendChild(this.highscore);
-            
-//            this.highscore2.innerText = "Your Score:" + " " + this.score;
-//            document.body.appendChild(this.highscore2);
-            
-            
-            
         }
     }
 }

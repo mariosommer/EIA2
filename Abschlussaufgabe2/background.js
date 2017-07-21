@@ -1,8 +1,6 @@
 var Abschlussaufgabe;
 (function (Abschlussaufgabe) {
     var Background = (function () {
-        //        score: number;
-        //        highscore: HTMLDivElement = document.createElement("div");
         function Background(_x, _y, _distance) {
             this.s = 800;
             this.n = 800;

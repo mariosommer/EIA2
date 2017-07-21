@@ -7,19 +7,16 @@ var Abschlussaufgabe;
             this.lifeBird = 1040;
             this.highscore = document.createElement("div");
             this.highscore2 = document.createElement("div");
-            this.endscore2 = document.getElementsByTagName("div");
             this.setRandomYHighTop();
             this.setRandomYHighBottom();
             this.x = _x;
             this.z = _z;
             this.distance = _distance;
-            this.draw();
         }
         Pipe.prototype.move = function () {
             if (this.lifeBird > 0) {
                 this.x += -6.5;
                 this.z += -6.5;
-                //distance
                 this.distance += 6.5;
             }
             //lvl2
@@ -34,7 +31,7 @@ var Abschlussaufgabe;
                 this.z += -4;
                 this.distance += 4;
             }
-            //lvl3
+            //lvl4
             if (this.distance > 15000 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
@@ -50,9 +47,6 @@ var Abschlussaufgabe;
                 this.z = Abschlussaufgabe.crc2.canvas.width - 800;
                 this.setRandomYHighBottom();
             }
-        };
-        Pipe.prototype.draw = function () {
-            //abstract
         };
         Pipe.prototype.setRandomYHighTop = function () {
             this.y = Math.floor((Math.random() * 120) + 60); //Rohr1    Zwischen 60-180   
@@ -73,7 +67,6 @@ var Abschlussaufgabe;
             this.crashBottom();
             this.move();
             this.life();
-            this.draw();
             this.calculateScore();
         };
         Pipe.prototype.drawPipeBottom = function () {
@@ -116,8 +109,8 @@ var Abschlussaufgabe;
                     element.style.display = "block";
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
-                    var element = document.getElementById("reset");
-                    element.style.display = "block";
+                    var element2 = document.getElementById("reset");
+                    element2.style.display = "block";
                 }
             }
             //Rohr drei und vier Oben
@@ -131,12 +124,12 @@ var Abschlussaufgabe;
                 this.lifeBird = this.lifeBird - this.damagePipeTop - this.damagePipeBottom;
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
-                    var element = document.getElementById("gameOver");
-                    element.style.display = "block";
+                    var element3 = document.getElementById("gameOver");
+                    element3.style.display = "block";
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
-                    var element = document.getElementById("reset");
-                    element.style.display = "block";
+                    var element4 = document.getElementById("reset");
+                    element4.style.display = "block";
                 }
             }
         };
@@ -154,15 +147,12 @@ var Abschlussaufgabe;
                 this.lifeBird = this.lifeBird - this.damagePipeBottom - this.damagePipeTop;
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
-                    var element = document.getElementById("gameOver");
-                    element.style.display = "block";
-                    // Text 
+                    var element5 = document.getElementById("gameOver");
+                    element5.style.display = "block";
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
-                    var element = document.getElementById("reset");
-                    element.style.display = "block";
-                    var element = document.getElementById("reset");
-                    element.style.display = "block";
+                    var element6 = document.getElementById("reset");
+                    element6.style.display = "block";
                 }
             }
             //Rohr drei und vier Unten
@@ -176,10 +166,10 @@ var Abschlussaufgabe;
                 this.lifeBird = this.lifeBird - this.damagePipeBottom - this.damagePipeTop;
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
-                    var element = document.getElementById("gameOver");
-                    element.style.display = "block";
-                    var element = document.getElementById("reset");
-                    element.style.display = "block";
+                    var element7 = document.getElementById("gameOver");
+                    element7.style.display = "block";
+                    var element8 = document.getElementById("reset");
+                    element8.style.display = "block";
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
                 }
@@ -189,8 +179,6 @@ var Abschlussaufgabe;
             this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
             this.highscore.innerText = "Score:" + " " + this.score;
             document.body.appendChild(this.highscore);
-            //            this.highscore2.innerText = "Your Score:" + " " + this.score;
-            //            document.body.appendChild(this.highscore2);
         };
         return Pipe;
     }());

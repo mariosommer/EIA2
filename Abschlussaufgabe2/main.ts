@@ -9,30 +9,18 @@ nicht kopiert und auch nicht diktiert.
 Grafiken und Bilder von freepik.com
 */
 
-
 namespace Abschlussaufgabe {
-
     window.addEventListener("load", init);
-
-    export let crc2: CanvasRenderingContext2D; //export - Klasse muss wissen worauf sie sich zeichnen soll
-
-    let ground: Ground[] = [];
-
-    let background: Background[] = [];
-
-    export let pipes: Pipe[] = [];
-
-    export let gameON: boolean = false;
-
-    //  export let pflanzen: PflanzeSuperklasse[] = [];
-
-
-
-    let birdChoice: number;
-
-    let test: number = 0;
+    export let crc2: CanvasRenderingContext2D;
     
-    console.log(test)
+    let ground: Ground[] = [];
+    let background: Background[] = [];
+    export let pipes: Pipe[] = [];
+    export let gameON: boolean = false;
+    let birdChoice: number;
+    let distance: number = 0;
+    
+
 
 
 
@@ -60,47 +48,12 @@ namespace Abschlussaufgabe {
         crc2 = canvas.getContext("2d");
         imgData = crc2.getImageData(0, 0, 800, 480);
         
-        //Rohre estellen
-        for (let i: number = 0; i < 1; i++) {
-            let r: Pipe = new Pipe(0, 0, 0, test);
-            pipes.push(r);
-            
-            
-            console.log(test);
-        }
-
-        //Vogel
-        //        for (let i: number = 0; i < 1; i++) {
-        //            let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
-        //            voegel.push(v);
-        //        }
-
-        //Boden
-        for (let i: number = 0; i < n; i++) {
-            let s: Ground = new Ground(0, 420, 0);
-            ground.push(s);
-        }
-
-        //Hintergrund
-        for (let i: number = 0; i < n; i++) {
-            let t: Background = new Background(0, 420, 0);
-            background.push(t);
-        }
-
-        //        //Vogel
-        //        for (let i: number = 0; i < 1; i++) {
-        //            let b: Bird = new Bird3(50, 100, 0);
-        //            birds.push(b);
-        //        }
+        drawGame();
 
         // Vogel springen lassen
         canvas.addEventListener("click", erhoeheYWertVogel);
-        //     canvas.addEventListener("touchstart", erhoeheYWertVogel     
+        canvas.addEventListener("touchstart", erhoeheYWertVogel);
 
-        //     canvas.addEventListener("click", handleMouseClick, false); 
-        
-        
-        
         document.getElementById("vogel1").addEventListener("click", startWithBird1);
         document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
 
@@ -113,6 +66,27 @@ namespace Abschlussaufgabe {
         document.getElementById("reset").addEventListener("click", reload);
         document.getElementById("reset").addEventListener("touchstart", reload);
         // window.setTimeout(animate, 20);
+    }
+    
+    function drawGame(): void {
+        
+        //Rohre estellen
+        for (let i: number = 0; i < 1; i++) {
+            let r: Pipe = new Pipe(0, 0, 0, distance);
+            pipes.push(r);         
+        }
+        
+        //Boden
+        for (let i: number = 0; i < n; i++) {
+            let s: Ground = new Ground(0, 420, 0);
+            ground.push(s);
+        }
+
+        //Hintergrund
+        for (let i: number = 0; i < n; i++) {
+            let t: Background = new Background(0, 420, 0);
+            background.push(t);
+        }
     }
 
     function startGame(): void {
@@ -129,7 +103,7 @@ namespace Abschlussaufgabe {
         gameON = true;
     }
 
-    function startWithBird1(_event: MouseEvent) {
+    function startWithBird1(_event: MouseEvent): void {
 
         for (let i: number = 0; i < 1; i++) {
             let b: Bird = new Bird1(50, 100, 0);
@@ -141,7 +115,7 @@ namespace Abschlussaufgabe {
         }
     }
 
-    function startWithBird2(_event: MouseEvent) {
+    function startWithBird2(_event: MouseEvent): void {
 
         for (let i: number = 0; i < 1; i++) {
             let b: Bird = new Bird2(50, 100, 0);
@@ -153,7 +127,7 @@ namespace Abschlussaufgabe {
         }
     }
 
-    function startWithBird3(_event: MouseEvent) {
+    function startWithBird3(_event: MouseEvent): void {
 
         for (let i: number = 0; i < 1; i++) {
             let b: Bird = new Bird3(50, 100, 0);
@@ -164,11 +138,6 @@ namespace Abschlussaufgabe {
             startGame();
         }
     }
-
-
-
-
-
 
     function animate(_width: number, _height: number): void {
 
@@ -187,29 +156,17 @@ namespace Abschlussaufgabe {
             s.update();
         }
 
-        //        for (let i: number = 0; i < voegel.length; i++) {
-        //            let s: VogelSuperklasse = voegel[i];
-        //            s.update();
-        //        }
-
-        //        for (let i: number = 0; i < bird.length; i++) {
-        //            let s: Bird =;
-        //            s.update();
-        //        }
-        
         for (let i: number = 0; i < birds.length; i++) {
             let s: Bird = birds[i];
             s.update();
         }
-
-
         window.setTimeout(animate, 20);
     }
-    
-    
+        
       function reload(): void {
+                    
         location.reload();
-}
+    }
 
     //Vogel fliegt hoch wenn Leertaste gedrückt wird
     document.onkeydown = function(_event: KeyboardEvent): void {
@@ -228,6 +185,10 @@ namespace Abschlussaufgabe {
         for (let i: number = 0; i < n; i++) {
             let r: Bird = birds[i];
             r.up();
-        }
+            
+            //Flügelschlag
+            var audio: any = document.getElementById("audioBird");
+            audio.play();
+        }     
     }
 } 
