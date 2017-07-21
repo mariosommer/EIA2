@@ -52,19 +52,19 @@ namespace Abschlussaufgabe {
 
         // Vogel springen lassen
         canvas.addEventListener("click", erhoeheYWertVogel);
-        canvas.addEventListener("touchstart", erhoeheYWertVogel);
+        // canvas.addEventListener("touchstart", erhoeheYWertVogel);
 
         document.getElementById("vogel1").addEventListener("click", startWithBird1);
-        document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
+        // document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
 
         document.getElementById("vogel2").addEventListener("click", startWithBird2);
-        document.getElementById("vogel2").addEventListener("touchstart", startWithBird2);
+        // document.getElementById("vogel2").addEventListener("touchstart", startWithBird2);
 
         document.getElementById("vogel3").addEventListener("click", startWithBird3);
-        document.getElementById("vogel3").addEventListener("touchstart", startWithBird3);
+        // document.getElementById("vogel3").addEventListener("touchstart", startWithBird3);
         
         document.getElementById("reset").addEventListener("click", reload);
-        document.getElementById("reset").addEventListener("touchstart", reload);
+        // document.getElementById("reset").addEventListener("touchstart", reload);
         // window.setTimeout(animate, 20);
     }
     
