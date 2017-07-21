@@ -26,6 +26,7 @@ namespace Abschlussaufgabe {
     let imgData: ImageData;   
     var audioStartScreen: any;
     var audioGame: any;
+    var audioGameOverOn: boolean = false;
      
     function init(_event: Event): void {
 
@@ -163,8 +164,13 @@ namespace Abschlussaufgabe {
         if (elementMusic.style.display == "block") {
             
             audioGame.pause();  
-        // var audioGameOver: any = document.getElementById("audioGameOver");
-        // audioGameOver.play();        
+            
+            if (audioGameOverOn == false) {
+            
+                var audioGameOver: any = document.getElementById("audioGameOver");
+                audioGameOver.play();                 
+                audioGameOverOn = true;
+            }
         }
     }
         

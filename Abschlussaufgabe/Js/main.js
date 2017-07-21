@@ -24,6 +24,7 @@ var Abschlussaufgabe;
     var imgData;
     var audioStartScreen;
     var audioGame;
+    var audioGameOverOn = false;
     function init(_event) {
         var canvas;
         canvas = document.getElementsByTagName("canvas")[0];
@@ -126,6 +127,11 @@ var Abschlussaufgabe;
         // Beim GameOver Musik aus
         if (elementMusic.style.display == "block") {
             audioGame.pause();
+            if (audioGameOverOn == false) {
+                var audioGameOver = document.getElementById("audioGameOver");
+                audioGameOver.play();
+                audioGameOverOn = true;
+            }
         }
     }
     function reload() {
