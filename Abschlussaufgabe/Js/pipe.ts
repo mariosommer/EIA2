@@ -145,8 +145,12 @@ namespace Abschlussaufgabe {
 
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
+                    
                     var element2: HTMLElement = document.getElementById("reset");
                     element2.style.display = "block";
+                    
+                    var elementMusic: HTMLElement = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
 
@@ -171,6 +175,9 @@ namespace Abschlussaufgabe {
 
                     var element4: HTMLElement = document.getElementById("reset");
                     element4.style.display = "block";
+                    
+                    var elementMusic: HTMLElement = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
         }
@@ -201,6 +208,9 @@ namespace Abschlussaufgabe {
 
                     var element6: HTMLElement = document.getElementById("reset");
                     element6.style.display = "block";
+                    
+                    var elementMusic: HTMLElement = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
 
@@ -227,6 +237,9 @@ namespace Abschlussaufgabe {
 
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
+                    
+                    var elementMusic: HTMLElement = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
         }

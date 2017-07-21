@@ -111,6 +111,8 @@ var Abschlussaufgabe;
                     document.body.appendChild(this.highscore2);
                     var element2 = document.getElementById("reset");
                     element2.style.display = "block";
+                    var elementMusic = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
             //Rohr drei und vier Oben
@@ -130,6 +132,8 @@ var Abschlussaufgabe;
                     document.body.appendChild(this.highscore2);
                     var element4 = document.getElementById("reset");
                     element4.style.display = "block";
+                    var elementMusic = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
         };
@@ -153,6 +157,8 @@ var Abschlussaufgabe;
                     document.body.appendChild(this.highscore2);
                     var element6 = document.getElementById("reset");
                     element6.style.display = "block";
+                    var elementMusic = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
             //Rohr drei und vier Unten
@@ -172,6 +178,8 @@ var Abschlussaufgabe;
                     element8.style.display = "block";
                     this.highscore2.innerText = "Your Score:" + " " + this.score;
                     document.body.appendChild(this.highscore2);
+                    var elementMusic = document.getElementById("music");
+                    elementMusic.style.display = "block";
                 }
             }
         };

@@ -7,6 +7,7 @@ Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
 
 Grafiken und Bilder von freepik.com
+Musik von: Ralph Vickers aka Rakohus | https://soundcloud.com/rakohus
 */
 
 namespace Abschlussaufgabe {
@@ -22,8 +23,10 @@ namespace Abschlussaufgabe {
     export let birds: Bird[] = [];
     export let z: number = 0;
     let n: number = 3;
-    let imgData: ImageData;
-    
+    let imgData: ImageData;   
+    var audioStartScreen: any;
+    var audioGame: any;
+     
     function init(_event: Event): void {
 
         let canvas: HTMLCanvasElement;
@@ -71,6 +74,9 @@ namespace Abschlussaufgabe {
             let t: Background = new Background(0, 420, 0);
             background.push(t);
         }
+        
+        audioStartScreen = document.getElementById("audioStartscreen");
+        audioStartScreen.play(); 
     }
 
     function startGame(): void {
@@ -85,6 +91,11 @@ namespace Abschlussaufgabe {
         element4.style.display = "none";
         window.setTimeout(animate, 20);
         gameON = true;
+
+        audioStartScreen.pause();
+        
+        audioGame = document.getElementById("audioGame");
+        audioGame.play();
     }
 
     function startWithBird1(_event: MouseEvent): void {
@@ -145,6 +156,16 @@ namespace Abschlussaufgabe {
             s.update();
         }
         window.setTimeout(animate, 20);
+              
+        var elementMusic: HTMLElement = document.getElementById("gameOver");
+        
+        // Beim GameOver Musik aus
+        if (elementMusic.style.display == "block") {
+            
+            audioGame.pause();  
+        // var audioGameOver: any = document.getElementById("audioGameOver");
+        // audioGameOver.play();        
+        }
     }
         
       function reload(): void {

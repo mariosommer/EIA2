@@ -7,6 +7,7 @@ Code selbst geschrieben habe. Er wurde
 nicht kopiert und auch nicht diktiert.
 
 Grafiken und Bilder von freepik.com
+Musik von: Ralph Vickers aka Rakohus | https://soundcloud.com/rakohus
 */
 var Abschlussaufgabe;
 (function (Abschlussaufgabe) {
@@ -21,6 +22,8 @@ var Abschlussaufgabe;
     Abschlussaufgabe.z = 0;
     var n = 3;
     var imgData;
+    var audioStartScreen;
+    var audioGame;
     function init(_event) {
         var canvas;
         canvas = document.getElementsByTagName("canvas")[0];
@@ -57,6 +60,8 @@ var Abschlussaufgabe;
             var t = new Abschlussaufgabe.Background(0, 420, 0);
             background.push(t);
         }
+        audioStartScreen = document.getElementById("audioStartscreen");
+        audioStartScreen.play();
     }
     function startGame() {
         var element1 = document.getElementById("vogel1");
@@ -69,6 +74,9 @@ var Abschlussaufgabe;
         element4.style.display = "none";
         window.setTimeout(animate, 20);
         Abschlussaufgabe.gameON = true;
+        audioStartScreen.pause();
+        audioGame = document.getElementById("audioGame");
+        audioGame.play();
     }
     function startWithBird1(_event) {
         for (var i = 0; i < 1; i++) {
@@ -114,6 +122,11 @@ var Abschlussaufgabe;
             s_3.update();
         }
         window.setTimeout(animate, 20);
+        var elementMusic = document.getElementById("gameOver");
+        // Beim GameOver Musik aus
+        if (elementMusic.style.display == "block") {
+            audioGame.pause();
+        }
     }
     function reload() {
         location.reload();
