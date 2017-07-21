@@ -18,10 +18,8 @@ var Abschlussaufgabe;
     var birdChoice;
     var distance = 0;
     Abschlussaufgabe.birds = [];
-    // export let bird: Bird[] = [];  
     Abschlussaufgabe.z = 0;
-    console.log(Abschlussaufgabe.z);
-    var n = 3; //Anzahl NormaleBienen
+    var n = 3;
     var imgData;
     function init(_event) {
         var canvas;

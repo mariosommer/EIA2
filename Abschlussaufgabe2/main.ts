@@ -19,27 +19,11 @@ namespace Abschlussaufgabe {
     export let gameON: boolean = false;
     let birdChoice: number;
     let distance: number = 0;
-    
-
-
-
-
     export let birds: Bird[] = [];
-
-    // export let bird: Bird[] = [];  
-
     export let z: number = 0;
-
-    console.log(z);
-
-
-    let n: number = 3; //Anzahl NormaleBienen
-
+    let n: number = 3;
     let imgData: ImageData;
-
-
-
-
+    
     function init(_event: Event): void {
 
         let canvas: HTMLCanvasElement;
