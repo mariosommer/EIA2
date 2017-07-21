@@ -14,10 +14,13 @@ var Abschlussaufgabe;
     var ground = [];
     var background = [];
     Abschlussaufgabe.pipes = [];
-    Abschlussaufgabe.playing = false;
+    Abschlussaufgabe.gameON = false;
     //  export let pflanzen: PflanzeSuperklasse[] = [];
-    var voegel = [];
-    Abschlussaufgabe.bird = [];
+    var birdChoice;
+    var test = 0;
+    console.log(test);
+    Abschlussaufgabe.birds = [];
+    // export let bird: Bird[] = [];  
     Abschlussaufgabe.z = 0;
     console.log(Abschlussaufgabe.z);
     var n = 3; //Anzahl NormaleBienen
@@ -30,14 +33,15 @@ var Abschlussaufgabe;
         imgData = Abschlussaufgabe.crc2.getImageData(0, 0, 800, 480);
         //Rohre estellen
         for (var i = 0; i < 1; i++) {
-            var r = new Abschlussaufgabe.Pipe(0, 0, 0, 0);
+            var r = new Abschlussaufgabe.Pipe(0, 0, 0, test);
             Abschlussaufgabe.pipes.push(r);
+            console.log(test);
         }
         //Vogel
-        for (var i = 0; i < 1; i++) {
-            var v = new Abschlussaufgabe.RoterVogel(20, 30, 0);
-            voegel.push(v);
-        }
+        //        for (let i: number = 0; i < 1; i++) {
+        //            let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
+        //            voegel.push(v);
+        //        }
         //Boden
         for (var i = 0; i < n; i++) {
             var s = new Abschlussaufgabe.Ground(0, 420, 0);
@@ -48,39 +52,63 @@ var Abschlussaufgabe;
             var t = new Abschlussaufgabe.Background(0, 420, 0);
             background.push(t);
         }
-        //Vogel
-        for (var i = 0; i < 1; i++) {
-            var b = new Abschlussaufgabe.Bird(50, 100);
-            Abschlussaufgabe.bird.push(b);
-        }
+        //        //Vogel
+        //        for (let i: number = 0; i < 1; i++) {
+        //            let b: Bird = new Bird3(50, 100, 0);
+        //            birds.push(b);
+        //        }
         // Vogel springen lassen
         canvas.addEventListener("click", erhoeheYWertVogel);
         //     canvas.addEventListener("touchstart", erhoeheYWertVogel     
-        drawStartScreen();
-        //     canvas.addEventListener("click", handleMouseClick, false);
-        document.getElementById("vogel1").addEventListener("click", handleMouseClick, false);
-        document.getElementById("vogel2").addEventListener("click", handleMouseClick, false);
-        document.getElementById("vogel3").addEventListener("click", handleMouseClick, false);
+        //     canvas.addEventListener("click", handleMouseClick, false); 
+        document.getElementById("vogel1").addEventListener("click", startWithBird1);
+        document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
+        document.getElementById("vogel2").addEventListener("click", startWithBird2);
+        document.getElementById("vogel2").addEventListener("touchstart", startWithBird2);
+        document.getElementById("vogel3").addEventListener("click", startWithBird3);
+        document.getElementById("vogel3").addEventListener("touchstart", startWithBird3);
+        document.getElementById("reset").addEventListener("click", reload);
+        document.getElementById("reset").addEventListener("touchstart", reload);
         // window.setTimeout(animate, 20);
     }
     function startGame() {
+        var element1 = document.getElementById("vogel1");
+        element1.style.display = "none";
+        var element2 = document.getElementById("vogel2");
+        element2.style.display = "none";
+        var element3 = document.getElementById("vogel3");
+        element3.style.display = "none";
+        var element4 = document.getElementById("startscreen");
+        element4.style.display = "none";
         window.setTimeout(animate, 20);
-        Abschlussaufgabe.playing = true;
+        Abschlussaufgabe.gameON = true;
     }
-    function handleMouseClick(_event) {
-        var element = document.getElementById("vogel1");
-        element.style.display = "none";
-        var element = document.getElementById("vogel2");
-        element.style.display = "none";
-        var element = document.getElementById("vogel3");
-        element.style.display = "none";
-        var element = document.getElementById("startscreen");
-        element.style.display = "none";
-        if (Abschlussaufgabe.playing == false) {
+    function startWithBird1(_event) {
+        for (var i = 0; i < 1; i++) {
+            var b = new Abschlussaufgabe.Bird1(50, 100, 0);
+            Abschlussaufgabe.birds.push(b);
+        }
+        if (Abschlussaufgabe.gameON == false) {
             startGame();
         }
     }
-    function drawStartScreen() {
+    function startWithBird2(_event) {
+        for (var i = 0; i < 1; i++) {
+            var b = new Abschlussaufgabe.Bird2(50, 100, 0);
+            Abschlussaufgabe.birds.push(b);
+        }
+        if (Abschlussaufgabe.gameON == false) {
+            startGame();
+        }
+    }
+    function startWithBird3(_event) {
+        for (var i = 0; i < 1; i++) {
+            var b = new Abschlussaufgabe.Bird3(50, 100, 0);
+            Abschlussaufgabe.birds.push(b);
+        }
+        if (Abschlussaufgabe.gameON == false) {
+            startGame();
+        }
     }
     function animate(_width, _height) {
         Abschlussaufgabe.crc2.putImageData(imgData, 0, 0); //Bild
@@ -94,20 +122,27 @@ var Abschlussaufgabe;
             var s_2 = ground[i];
             s_2.update();
         }
-        for (var i = 0; i < voegel.length; i++) {
-            var s_3 = voegel[i];
+        //        for (let i: number = 0; i < voegel.length; i++) {
+        //            let s: VogelSuperklasse = voegel[i];
+        //            s.update();
+        //        }
+        //        for (let i: number = 0; i < bird.length; i++) {
+        //            let s: Bird =;
+        //            s.update();
+        //        }
+        for (var i = 0; i < Abschlussaufgabe.birds.length; i++) {
+            var s_3 = Abschlussaufgabe.birds[i];
             s_3.update();
         }
-        for (var i = 0; i < Abschlussaufgabe.bird.length; i++) {
-            var s_4 = Abschlussaufgabe.bird[i];
-            s_4.update();
-        }
         window.setTimeout(animate, 20);
+    }
+    function reload() {
+        location.reload();
     }
     //Vogel fliegt hoch wenn Leertaste gedrückt wird
     document.onkeydown = function (_event) {
         for (var i = 0; i < n; i++) {
-            var r = Abschlussaufgabe.bird[i];
+            var r = Abschlussaufgabe.birds[i];
             var x = _event.keyCode;
             if (x == 32) {
                 r.up();
@@ -117,7 +152,7 @@ var Abschlussaufgabe;
     //Vogel fliegt hoch bei MausKlick
     function erhoeheYWertVogel() {
         for (var i = 0; i < n; i++) {
-            var r = Abschlussaufgabe.bird[i];
+            var r = Abschlussaufgabe.birds[i];
             r.up();
         }
     }

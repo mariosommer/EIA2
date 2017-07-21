@@ -22,15 +22,23 @@ namespace Abschlussaufgabe {
 
     export let pipes: Pipe[] = [];
 
-    export let playing: boolean = false;
+    export let gameON: boolean = false;
 
     //  export let pflanzen: PflanzeSuperklasse[] = [];
 
 
 
-    let voegel: VogelSuperklasse[] = [];
+    let birdChoice: number;
 
-    export let bird: Bird[] = [];
+    let test: number = 0;
+    
+    console.log(test)
+
+
+
+    export let birds: Bird[] = [];
+
+    // export let bird: Bird[] = [];  
 
     export let z: number = 0;
 
@@ -51,20 +59,21 @@ namespace Abschlussaufgabe {
         canvas.style.marginLeft = "20px";
         crc2 = canvas.getContext("2d");
         imgData = crc2.getImageData(0, 0, 800, 480);
-
-
-
+        
         //Rohre estellen
         for (let i: number = 0; i < 1; i++) {
-            let r: Pipe = new Pipe(0, 0, 0, 0);
+            let r: Pipe = new Pipe(0, 0, 0, test);
             pipes.push(r);
+            
+            
+            console.log(test);
         }
 
         //Vogel
-        for (let i: number = 0; i < 1; i++) {
-            let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
-            voegel.push(v);
-        }
+        //        for (let i: number = 0; i < 1; i++) {
+        //            let v: VogelSuperklasse = new RoterVogel(20, 30, 0);
+        //            voegel.push(v);
+        //        }
 
         //Boden
         for (let i: number = 0; i < n; i++) {
@@ -78,56 +87,87 @@ namespace Abschlussaufgabe {
             background.push(t);
         }
 
-        //Vogel
-        for (let i: number = 0; i < 1; i++) {
-            let b: Bird = new Bird(50, 100);
-            bird.push(b);
-        }
+        //        //Vogel
+        //        for (let i: number = 0; i < 1; i++) {
+        //            let b: Bird = new Bird3(50, 100, 0);
+        //            birds.push(b);
+        //        }
 
         // Vogel springen lassen
         canvas.addEventListener("click", erhoeheYWertVogel);
         //     canvas.addEventListener("touchstart", erhoeheYWertVogel     
-           drawStartScreen();     
-       //     canvas.addEventListener("click", handleMouseClick, false);
+
+        //     canvas.addEventListener("click", handleMouseClick, false); 
         
-        document.getElementById("vogel1").addEventListener("click", handleMouseClick, false);
-        document.getElementById("vogel2").addEventListener("click", handleMouseClick, false);
         
-        document.getElementById("vogel3").addEventListener("click", handleMouseClick, false);
         
-       // window.setTimeout(animate, 20);
+        document.getElementById("vogel1").addEventListener("click", startWithBird1);
+        document.getElementById("vogel1").addEventListener("touchstart", startWithBird1);
+
+        document.getElementById("vogel2").addEventListener("click", startWithBird2);
+        document.getElementById("vogel2").addEventListener("touchstart", startWithBird2);
+
+        document.getElementById("vogel3").addEventListener("click", startWithBird3);
+        document.getElementById("vogel3").addEventListener("touchstart", startWithBird3);
+        
+        document.getElementById("reset").addEventListener("click", reload);
+        document.getElementById("reset").addEventListener("touchstart", reload);
+        // window.setTimeout(animate, 20);
     }
 
     function startGame(): void {
+
+        var element1: any = document.getElementById("vogel1");
+        element1.style.display = "none";
+        var element2: any = document.getElementById("vogel2");
+        element2.style.display = "none";
+        var element3: any = document.getElementById("vogel3");
+        element3.style.display = "none";
+        var element4: any = document.getElementById("startscreen");
+        element4.style.display = "none";
         window.setTimeout(animate, 20);
-        playing = true;
+        gameON = true;
     }
 
-    function handleMouseClick(_event: MouseEvent) {
+    function startWithBird1(_event: MouseEvent) {
 
-        var element: any = document.getElementById("vogel1");
-                    element.style.display = "none";
-           var element: any = document.getElementById("vogel2");
-                    element.style.display = "none";
-          var element: any = document.getElementById("vogel3");
-                    element.style.display = "none";
-         var element: any = document.getElementById("startscreen");
-                    element.style.display = "none";
-        
-        if (playing == false) {
+        for (let i: number = 0; i < 1; i++) {
+            let b: Bird = new Bird1(50, 100, 0);
+            birds.push(b);
+        }
+
+        if (gameON == false) {
             startGame();
-            
-               
+        }
+    }
+
+    function startWithBird2(_event: MouseEvent) {
+
+        for (let i: number = 0; i < 1; i++) {
+            let b: Bird = new Bird2(50, 100, 0);
+            birds.push(b);
+        }
+
+        if (gameON == false) {
+            startGame();
+        }
+    }
+
+    function startWithBird3(_event: MouseEvent) {
+
+        for (let i: number = 0; i < 1; i++) {
+            let b: Bird = new Bird3(50, 100, 0);
+            birds.push(b);
+        }
+
+        if (gameON == false) {
+            startGame();
         }
     }
 
 
 
 
-    function drawStartScreen(): void {
-        
-
-    }
 
 
     function animate(_width: number, _height: number): void {
@@ -147,23 +187,34 @@ namespace Abschlussaufgabe {
             s.update();
         }
 
-        for (let i: number = 0; i < voegel.length; i++) {
-            let s: VogelSuperklasse = voegel[i];
+        //        for (let i: number = 0; i < voegel.length; i++) {
+        //            let s: VogelSuperklasse = voegel[i];
+        //            s.update();
+        //        }
+
+        //        for (let i: number = 0; i < bird.length; i++) {
+        //            let s: Bird =;
+        //            s.update();
+        //        }
+        
+        for (let i: number = 0; i < birds.length; i++) {
+            let s: Bird = birds[i];
             s.update();
         }
 
-        for (let i: number = 0; i < bird.length; i++) {
-            let s: Bird = bird[i];
-            s.update();
-        }
 
         window.setTimeout(animate, 20);
     }
+    
+    
+      function reload(): void {
+        location.reload();
+}
 
     //Vogel fliegt hoch wenn Leertaste gedrückt wird
     document.onkeydown = function(_event: KeyboardEvent): void {
         for (let i: number = 0; i < n; i++) {
-            let r: Bird = bird[i];
+            let r: Bird = birds[i];
             var x: number = _event.keyCode;
             if (x == 32) {
                 r.up();
@@ -175,7 +226,7 @@ namespace Abschlussaufgabe {
     function erhoeheYWertVogel(): void {
 
         for (let i: number = 0; i < n; i++) {
-            let r: Bird = bird[i];
+            let r: Bird = birds[i];
             r.up();
         }
     }

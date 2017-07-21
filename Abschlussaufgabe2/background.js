@@ -1,12 +1,13 @@
 var Abschlussaufgabe;
 (function (Abschlussaufgabe) {
     var Background = (function () {
+        //        score: number;
+        //        highscore: HTMLDivElement = document.createElement("div");
         function Background(_x, _y, _distance) {
             this.s = 800;
             this.n = 800;
             this.t = 800;
             this.m = 0;
-            this.highscore = document.createElement("div");
             this.x = _x;
             this.y = _y;
             this.distance = _distance;
@@ -14,7 +15,7 @@ var Abschlussaufgabe;
         }
         Background.prototype.update = function () {
             this.move();
-            this.calculateScore();
+            // this.calculateScore();
         };
         Background.prototype.move = function () {
             //Speed
@@ -79,11 +80,6 @@ var Abschlussaufgabe;
             if (this.t > 1) {
                 this.t += -18.5;
             }
-        };
-        Background.prototype.calculateScore = function () {
-            this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
-            this.highscore.innerText = "Score:" + " " + this.score;
-            document.body.appendChild(this.highscore);
         };
         return Background;
     }());

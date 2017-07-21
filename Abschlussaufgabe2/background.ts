@@ -8,8 +8,8 @@ namespace Abschlussaufgabe {
         n: number = 800;
         t: number = 800;
         m: number = 0;
-        score: number;
-        highscore: HTMLDivElement = document.createElement("div");
+//        score: number;
+//        highscore: HTMLDivElement = document.createElement("div");
 
         constructor(_x: number, _y: number, _distance: number) {
             this.x = _x;
@@ -20,7 +20,7 @@ namespace Abschlussaufgabe {
 
         update(): void {
             this.move();
-            this.calculateScore();
+           // this.calculateScore();
         }
 
         move(): void {
@@ -108,10 +108,10 @@ namespace Abschlussaufgabe {
             }
         }
 
-        calculateScore(): void {
-            this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
-            this.highscore.innerText = "Score:" + " " + this.score;
-            document.body.appendChild(this.highscore);               
-        }
+//        calculateScore(): void {
+//            this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
+//            this.highscore.innerText = "Score:" + " " + this.score;
+//            document.body.appendChild(this.highscore);               
+//        }
     }
 }

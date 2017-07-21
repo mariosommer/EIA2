@@ -16,6 +16,14 @@ namespace Abschlussaufgabe {
         damagePipeTop: number = 0;
         damagePipeBottom: number = 0;
         lifeBird: number = 1040;
+        score: number;
+        highscore: HTMLDivElement = document.createElement("div");
+        
+         highscore2: HTMLDivElement = document.createElement("div");
+        
+        endscore2: any = document.getElementsByTagName("div");
+        
+        
 
         constructor(_x: number, _y: number, _z: number, _distance: number) {
             this.setRandomYHighTop();
@@ -27,28 +35,34 @@ namespace Abschlussaufgabe {
         }
 
         move(): void {
-            this.x += - 6.5;
-            this.z += - 6.5;
 
-            //distance
-            this.distance += 6.5;
+            if (this.lifeBird > 0) {
+
+                this.x += - 6.5;
+                this.z += - 6.5;
+
+                //distance
+                this.distance += 6.5;
+
+            }
+
 
             //lvl2
-            if (this.distance > 2600) {
+            if (this.distance > 2600 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
                 this.distance += 4;
             }
 
             //lvl3
-            if (this.distance > 8000) {
+            if (this.distance > 8000 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
                 this.distance += 4;
             }
 
             //lvl3
-            if (this.distance > 15000) {
+            if (this.distance > 15000 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
                 this.distance += 4;
@@ -98,6 +112,7 @@ namespace Abschlussaufgabe {
             this.move();
             this.life();
             this.draw();
+            this.calculateScore();
         }
 
         drawPipeBottom(): void {
@@ -127,8 +142,8 @@ namespace Abschlussaufgabe {
 
         crashTop(): void {
 
-            this.xBird = bird[0].x;
-            this.yBird = bird[0].y;
+            this.xBird = birds[0].x;
+            this.yBird = birds[0].y;
 
             //Erste zwei Rohre Oben  
             if (((this.x > - 9 && this.x < 110) && (this.y > this.yBird)) || ((this.x > -409 && this.x < -290) && (this.y2 > this.yBird))) {
@@ -141,9 +156,31 @@ namespace Abschlussaufgabe {
                 this.lifeBird = this.lifeBird - this.damagePipeTop - this.damagePipeBottom;
 
                 if (this.lifeBird < 0) {
+
+
                     console.log("Game Over");
                     var element: any = document.getElementById("gameOver");
                     element.style.display = "block";
+                    
+      
+                    
+                                this.highscore2.innerText = "Your Score:" + " " + this.score;
+            document.body.appendChild(this.highscore2);
+                    var element: any = document.getElementById("reset");
+                    element.style.display = "block";
+                    
+//                     crc2.fillStyle = "black";
+//                crc2.fillRect(10, 10, 800, 480);
+//                    
+//                    
+//                          // Text 
+//                crc2.stroke();
+//                crc2.fillStyle = "white";
+//                crc2.font = "100px Lato";
+//                crc2.fillText("Das Große Krabbeln", 250, 250);
+//                crc2.font = "60px Lato";
+
+
                 }
             }
 
@@ -158,16 +195,38 @@ namespace Abschlussaufgabe {
                 this.lifeBird = this.lifeBird - this.damagePipeTop - this.damagePipeBottom;
 
                 if (this.lifeBird < 0) {
+
+
                     console.log("Game Over");
                     var element: any = document.getElementById("gameOver");
                     element.style.display = "block";
+                    
+  
+                    
+                                this.highscore2.innerText = "Your Score:" + " " + this.score;
+            document.body.appendChild(this.highscore2);
+                    
+                    var element: any = document.getElementById("reset");
+                    element.style.display = "block";
+                    
+//                     crc2.fillStyle = "black";
+//                crc2.fillRect(10, 10, 800, 480);
+//                    
+//                          // Text 
+//                crc2.stroke();
+//                crc2.fillStyle = "white";
+//                crc2.font = "100px Lato";
+//                crc2.fillText("Das Große Krabbeln", 250, 250);
+//                crc2.font = "60px Lato";
+
+
                 }
             }
         }
 
         crashBottom(): void {
-            this.xBird = bird[0].x;
-            this.yBird = bird[0].y;
+            this.xBird == birds[0].x;
+            this.yBird == birds[0].y;
 
             //Erste zwei Rohre Unten  
             if (((this.x > - 9 && this.x < 110) && ((this.y5 + 300) < (this.yBird + 60))) || ((this.x > -409 && this.x < -290) && ((this.y6 + 300) < (this.yBird + 60)))) {
@@ -184,7 +243,35 @@ namespace Abschlussaufgabe {
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
                     var element: any = document.getElementById("gameOver");
+     
+                    
                     element.style.display = "block";
+                    
+   
+      // Text 
+                                this.highscore2.innerText = "Your Score:" + " " + this.score;
+            document.body.appendChild(this.highscore2);
+                    
+                    var element: any = document.getElementById("reset");
+                    element.style.display = "block";
+                    
+                    var element: any = document.getElementById("reset");
+                    element.style.display = "block";
+                    
+                    
+                    
+//                     crc2.fillStyle = "black";
+//                crc2.fillRect(10, 10, 800, 480);
+//                    
+//                crc2.stroke();
+//                crc2.fillStyle = "white";
+//                crc2.font = "100px Lato";
+//                crc2.fillText("Das Große Krabbeln", 250, 250);
+//                crc2.font = "60px Lato";
+//
+//
+
+
                 }
             }
 
@@ -202,10 +289,43 @@ namespace Abschlussaufgabe {
 
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
+
                     var element: any = document.getElementById("gameOver");
                     element.style.display = "block";
+                    
+                    var element: any = document.getElementById("reset");
+                    element.style.display = "block";
+                    
+      
+                    
+                            this.highscore2.innerText = "Your Score:" + " " + this.score;
+            document.body.appendChild(this.highscore2);
+//                    
+//                crc2.fillStyle = "black";
+//                crc2.fillRect(10, 10, 800, 480);
+//                    
+//                crc2.stroke();
+//                crc2.fillStyle = "white";
+//                crc2.font = "100px Lato";
+//                crc2.fillText("Das Große Krabbeln", 250, 250);
+
+
+
+
                 }
             }
+        }
+
+        calculateScore(): void {
+            this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
+            this.highscore.innerText = "Score:" + " " + this.score;
+            document.body.appendChild(this.highscore);
+            
+//            this.highscore2.innerText = "Your Score:" + " " + this.score;
+//            document.body.appendChild(this.highscore2);
+            
+            
+            
         }
     }
 }

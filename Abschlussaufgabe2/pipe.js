@@ -5,6 +5,9 @@ var Abschlussaufgabe;
             this.damagePipeTop = 0;
             this.damagePipeBottom = 0;
             this.lifeBird = 1040;
+            this.highscore = document.createElement("div");
+            this.highscore2 = document.createElement("div");
+            this.endscore2 = document.getElementsByTagName("div");
             this.setRandomYHighTop();
             this.setRandomYHighBottom();
             this.x = _x;
@@ -13,24 +16,26 @@ var Abschlussaufgabe;
             this.draw();
         }
         Pipe.prototype.move = function () {
-            this.x += -6.5;
-            this.z += -6.5;
-            //distance
-            this.distance += 6.5;
+            if (this.lifeBird > 0) {
+                this.x += -6.5;
+                this.z += -6.5;
+                //distance
+                this.distance += 6.5;
+            }
             //lvl2
-            if (this.distance > 2600) {
+            if (this.distance > 2600 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
                 this.distance += 4;
             }
             //lvl3
-            if (this.distance > 8000) {
+            if (this.distance > 8000 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
                 this.distance += 4;
             }
             //lvl3
-            if (this.distance > 15000) {
+            if (this.distance > 15000 && this.lifeBird > 0) {
                 this.x += -4;
                 this.z += -4;
                 this.distance += 4;
@@ -69,6 +74,7 @@ var Abschlussaufgabe;
             this.move();
             this.life();
             this.draw();
+            this.calculateScore();
         };
         Pipe.prototype.drawPipeBottom = function () {
             var img = document.getElementById("rohrUnten");
@@ -93,8 +99,8 @@ var Abschlussaufgabe;
             Abschlussaufgabe.crc2.drawImage(img2, 10, 10, 200, 21);
         };
         Pipe.prototype.crashTop = function () {
-            this.xBird = Abschlussaufgabe.bird[0].x;
-            this.yBird = Abschlussaufgabe.bird[0].y;
+            this.xBird = Abschlussaufgabe.birds[0].x;
+            this.yBird = Abschlussaufgabe.birds[0].y;
             //Erste zwei Rohre Oben  
             if (((this.x > -9 && this.x < 110) && (this.y > this.yBird)) || ((this.x > -409 && this.x < -290) && (this.y2 > this.yBird))) {
                 Abschlussaufgabe.crc2.beginPath();
@@ -107,6 +113,10 @@ var Abschlussaufgabe;
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
                     var element = document.getElementById("gameOver");
+                    element.style.display = "block";
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
+                    var element = document.getElementById("reset");
                     element.style.display = "block";
                 }
             }
@@ -123,12 +133,16 @@ var Abschlussaufgabe;
                     console.log("Game Over");
                     var element = document.getElementById("gameOver");
                     element.style.display = "block";
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
+                    var element = document.getElementById("reset");
+                    element.style.display = "block";
                 }
             }
         };
         Pipe.prototype.crashBottom = function () {
-            this.xBird = Abschlussaufgabe.bird[0].x;
-            this.yBird = Abschlussaufgabe.bird[0].y;
+            this.xBird == Abschlussaufgabe.birds[0].x;
+            this.yBird == Abschlussaufgabe.birds[0].y;
             //Erste zwei Rohre Unten  
             if (((this.x > -9 && this.x < 110) && ((this.y5 + 300) < (this.yBird + 60))) || ((this.x > -409 && this.x < -290) && ((this.y6 + 300) < (this.yBird + 60)))) {
                 Abschlussaufgabe.crc2.beginPath();
@@ -141,6 +155,13 @@ var Abschlussaufgabe;
                 if (this.lifeBird < 0) {
                     console.log("Game Over");
                     var element = document.getElementById("gameOver");
+                    element.style.display = "block";
+                    // Text 
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
+                    var element = document.getElementById("reset");
+                    element.style.display = "block";
+                    var element = document.getElementById("reset");
                     element.style.display = "block";
                 }
             }
@@ -157,8 +178,19 @@ var Abschlussaufgabe;
                     console.log("Game Over");
                     var element = document.getElementById("gameOver");
                     element.style.display = "block";
+                    var element = document.getElementById("reset");
+                    element.style.display = "block";
+                    this.highscore2.innerText = "Your Score:" + " " + this.score;
+                    document.body.appendChild(this.highscore2);
                 }
             }
+        };
+        Pipe.prototype.calculateScore = function () {
+            this.score = Math.round(1.0 * ((this.distance - 150) / 400)) / 1.0; // Ergebnis: ohne Nachkommastelle
+            this.highscore.innerText = "Score:" + " " + this.score;
+            document.body.appendChild(this.highscore);
+            //            this.highscore2.innerText = "Your Score:" + " " + this.score;
+            //            document.body.appendChild(this.highscore2);
         };
         return Pipe;
     }());

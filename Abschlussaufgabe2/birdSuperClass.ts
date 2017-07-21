@@ -1,20 +1,25 @@
 namespace Abschlussaufgabe {
 
+
+
     export class Bird {
         x: number;
+        z: number;
         y: number;
-        gravity: number = 1;
+        gravity: number = 0.0000000001;
         velocity: number = 0;
         lift: number = -36;
 
-        constructor(_x: number, _y: number) {
-            this.x = _x;
-            this.y = _y;
-        }
 
-        draw(): void {
-            var img: HTMLImageElement = <HTMLImageElement>document.getElementById("roterVogel");
-            crc2.drawImage(img, this.x, this.y, 60, 60);
+
+
+        constructor(_x: number, _y: number, _z: number) {
+
+
+
+            this.draw();
+
+            this.update();
         }
 
         update(): void {
@@ -28,8 +33,19 @@ namespace Abschlussaufgabe {
             this.y += this.velocity;
         }
 
-        up(): void {
+                up(): void {
             this.velocity += this.lift;
         }
+
+
+        
+
+        draw(): void {
+            //abstract
+        }
+
+
+
+
     }
 }
